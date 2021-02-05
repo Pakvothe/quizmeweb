@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { URL_API } from '../../env';
 import axios from 'axios';
+const URL_API = process.env.URL_API;
 
 interface iUserLogin {
 	email: string;
