@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-interface panelProps {
+import { DefaultRootState, RootStateOrAny, useSelector } from 'react-redux';
+import { IState } from '../redux/slices/user';
+interface IPanelProps {
 	name: string;
 }
 
-const Panel: React.FC<panelProps> = ({ name }) => {
-	const { user } = useSelector((state) => state.user);
+const Panel: React.FC<IPanelProps> = () => {
+	const { user } = useSelector((state: IState) => state.user);
 	return <h1>{user.firstName}</h1>;
 };
 

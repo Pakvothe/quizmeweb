@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { HomeStyled } from '../styles/homeStyled';
 import Image from 'next/image';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { userLogin } from '../redux/slices/user';
 
 const Home = () => {
@@ -14,14 +14,14 @@ const Home = () => {
 		email: '',
 		password: '',
 	});
-	const handleChange = (ev) => {
+	const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
 		let newValue = {
 			...input,
 			[ev.target.name]: ev.target.value,
 		};
 		setInput(newValue);
 	};
-	const handleSubmit = (ev) => {
+	const handleSubmit = (ev: React.FormEvent) => {
 		ev.preventDefault();
 		dispatch(userLogin(input));
 		router.push('/panel');
@@ -30,44 +30,36 @@ const Home = () => {
 		<div>
 			<Head>
 				<title>Quizme App</title>
-				<link rel='icon' href='/favicon.ico' />
+				<link rel="icon" href="/favicon.ico" />
 				<link
-					rel='stylesheet'
-					integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
+					rel="stylesheet"
+					integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 				/>
 			</Head>
 			<HomeStyled>
-				<div className='home__logo'>
+				<div className="home__logo">
 					<Image
-						src='/assets/logo.png'
+						src="/assets/logo.png"
 						width={500}
 						height={500}
-						alt='Picture'
+						alt="Picture"
 					/>
 					<h2>QuizMe Web</h2>
 				</div>
-				<form onSubmit={handleSubmit} className='home__form'>
-					<div className='home__form__labelContainer'>
+				<form onSubmit={handleSubmit} className="home__form">
+					<div className="home__form__labelContainer">
 						<label className={focus ? 'full' : ''}>
 							<span>Email</span>
-							<input
-								type='email'
-								name='email'
-								onChange={handleChange}
-							/>
+							<input type="email" name="email" onChange={handleChange} />
 						</label>
 					</div>
-					<div className='home__form__labelContainer'>
+					<div className="home__form__labelContainer">
 						<label className={focus ? 'full' : ''}>
 							<span>Password</span>
-							<input
-								type='password'
-								name='password'
-								onChange={handleChange}
-							/>
+							<input type="password" name="password" onChange={handleChange} />
 						</label>
 					</div>
-					<button type='submit'>Enviar</button>
+					<button type="submit">Enviar</button>
 				</form>
 			</HomeStyled>
 		</div>
