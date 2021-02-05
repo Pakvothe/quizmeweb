@@ -1,16 +1,12 @@
 import React from 'react';
-import Head from 'next/head';
-import { URL_API } from '../env';
-const Panel = () => {
-	return (
-		<div>
-			<Head>
-				<title>Yo soy el panel playa</title>
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-			<h1>{URL_API}</h1>
-		</div>
-	);
+import { useSelector } from 'react-redux';
+interface panelProps {
+	name: string;
+}
+
+const Panel: React.FC<panelProps> = ({ name }) => {
+	const { user } = useSelector((state) => state.user);
+	return <h1>{user.firstName}</h1>;
 };
 
 export default Panel;
