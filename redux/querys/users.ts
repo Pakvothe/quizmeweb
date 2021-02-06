@@ -1,6 +1,21 @@
 import { gql } from 'graphql-request';
 import { EntireQuizInfo } from './quizzes';
 
+export const EntireUserInfo = gql`
+	fragment EntireUserInfo on User {
+		_id
+		firstName
+		lastName
+		email
+		profilePic
+		accountId
+		socialAccount
+		countryCode
+		role
+		isActive
+	}
+`;
+
 /* --- Querys --- */
 export const queryGetCompletedQuizzes = gql`
 	{
@@ -13,39 +28,29 @@ export const queryGetCompletedQuizzes = gql`
 export const queryGetUsers = gql`
 	{
 		getUsers {
-			_id
-			firstName
-			lastName
-			email
-			profilePic
-			accountId
-			socialAccount
-			countryCode
-			role
-			isActive
+			...EntireUserInfo
 		}
 	}
+	${EntireUserInfo}
 `;
 /* --- Mutations --- */
 
 export const mutationActivateUser = gql`
 	mutation activateUser($userId: ID!, $isActive: Boolean!) {
-		activateUser(userId: $userId, isActive: $isActive)
+		activateUser(userId: $userId, isActive: $isActive) {
+			...EntireUserInfo
+		}
 	}
+	${EntireUserInfo}
 `;
 
 export const queryUpdateUser = gql`
 	mutation($payload: UserInput) {
 		updateUser(userBody: $payload) {
-			_id
-			firstName
-			lastName
-			email
-			profilePic
-			countryCode
-			role
+			...EntireUserInfo
 		}
 	}
+	${EntireUserInfo}
 `;
 
 export const mutationCompletedQuiz = gql`

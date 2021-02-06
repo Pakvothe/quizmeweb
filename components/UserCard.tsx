@@ -19,6 +19,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 				</p>
 				<button
 					className='card__button'
+					style={{ backgroundColor: user.isActive ? '#d53051' : '#97da3f' }}
 					onClick={() => {
 						dispatch(
 							activateUser({
