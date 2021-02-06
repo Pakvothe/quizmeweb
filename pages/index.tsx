@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { HomeStyled } from '../styles/homeStyled';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { userLogin } from '../redux/slices/users';
+import { IState, userLogin } from '../redux/slices/users';
 
 const Home = () => {
 	const router = useRouter();
@@ -22,8 +22,11 @@ const Home = () => {
 	};
 	const handleSubmit = async (ev: React.FormEvent) => {
 		ev.preventDefault();
-		await dispatch(userLogin(input));
-		router.push('/quizzes');
+		const usercito = await dispatch(userLogin(input));
+		//@ts-ignore
+		if (usercito.payload?.role === 'ADMIN') {
+			router.push('/quizzes');
+		}
 	};
 	return (
 		<div>

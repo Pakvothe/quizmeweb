@@ -48,6 +48,21 @@ export interface IUserState {
 	loading: boolean;
 }
 
+export interface IStatsCategory {
+	[key: string]: string | number;
+	id: string;
+	description_en: string;
+	description_es: string;
+	value: number;
+}
+
+export interface IStatsState {
+	totalQuizzes: number;
+	totalNewUsers: number;
+	quizzesByCategories: IStatsCategory[];
+	loading: boolean;
+}
+
 export interface ICategoriesState {
 	categories: Array<ICategory>;
 	loading: false;
@@ -93,6 +108,7 @@ export interface IState {
 	users: IUserState;
 	quizzes: IQuizzesState;
 	categories: ICategoriesState;
+	stats: IStatsState;
 }
 
 export interface IUser {
@@ -135,9 +151,11 @@ const usersSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(userLogin.fulfilled, (state, { payload }) => {
-			localStorage.setItem('token', payload.jwt);
-			delete payload.jwt;
-			state.user = payload;
+			if (payload.role === 'ADMIN') {
+				localStorage.setItem('token', payload.jwt);
+				delete payload.jwt;
+				state.user = payload;
+			}
 		});
 		builder.addCase(activateUser.pending, (state) => {
 			state.loading = true;
