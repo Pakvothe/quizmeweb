@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import globalSlice from './slices/global';
-import userSlice from './slices/user';
+import usersSlice from './slices/users';
 import quizzesSlice from './slices/quizzes';
+import categoriesSlice from './slices/categories';
 
 export default configureStore({
 	reducer: {
 		global: globalSlice,
-		user: userSlice,
+		users: usersSlice,
 		quizzes: quizzesSlice,
+		categories: categoriesSlice,
 	},
 	devTools: true,
 });

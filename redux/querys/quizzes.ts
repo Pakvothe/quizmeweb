@@ -49,6 +49,15 @@ export const queryAllQuizzes = gql`
 	${EntireQuizInfo}
 `;
 
+export const queryGetQuiz = gql`
+	query($payload: ID!) {
+		getQuiz(id: $payload) {
+			...EntireQuizInfo
+		}
+	}
+	${EntireQuizInfo}
+`;
+
 export const queryGetQuizByCategory = gql`
 	query($payload: ID!) {
 		getQuizByCategory(catId: $payload) {

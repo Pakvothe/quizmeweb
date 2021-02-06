@@ -25,4 +25,15 @@ export const StyledNav = styled.nav`
 			transition: 0.2s;
 		}
 	}
+	.side-nav {
+		& > li + li {
+			margin-left: 2em;
+		}
+
+		a:hover {
+			color: var(--clr-dark);
+			transition: 0.2s;
+		}
+		cursor: pointer;
+	}
 `;
