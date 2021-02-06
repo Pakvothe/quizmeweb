@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux';
 import { HomeStyled } from '../styles/homeStyled';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { userLogin } from '../redux/slices/user';
+import { userLogin } from '../redux/slices/users';
 
 const Home = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const [focus, setFocus] = useState(false);
 	const [input, setInput] = useState({
 		email: '',
 		password: '',
@@ -21,10 +20,10 @@ const Home = () => {
 		};
 		setInput(newValue);
 	};
-	const handleSubmit = (ev: React.FormEvent) => {
+	const handleSubmit = async (ev: React.FormEvent) => {
 		ev.preventDefault();
-		dispatch(userLogin(input));
-		router.push('/panel');
+		await dispatch(userLogin(input));
+		router.push('/quizzes');
 	};
 	return (
 		<div>
