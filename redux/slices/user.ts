@@ -11,7 +11,6 @@ export const userLogin = createAsyncThunk(
 	'user/login',
 	async (payload: IUserLogin, thunkAPI) => {
 		const response = await axios.post(`${URL_API}/auth/login`, payload);
-		console.log('response', response);
 		return response.data;
 	}
 );
@@ -55,7 +54,7 @@ const userSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(userLogin.fulfilled, (state, { payload }) => {
-			state.token = payload.jwt;
+			localStorage.setItem('token', payload.jwt);
 			delete payload.jwt;
 			state.user = payload;
 		});

@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
 :root {
 	--clr-primary: #04aa8c;
 	--clr-white: #f7fdff;
@@ -22,8 +29,6 @@ body {
 	padding: 0;
 	margin: 0;
 	background-color: var(--clr-white);
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -31,6 +36,12 @@ a {
 	text-decoration: none;
 }
 
-* {
-	box-sizing: border-box;
+.container {
+	max-width: 1200px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+main.container {
+	padding-top: 2em;
 }

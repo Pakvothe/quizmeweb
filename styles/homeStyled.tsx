@@ -13,35 +13,42 @@ export const HomeStyled = styled.div`
 			width: 200px;
 			height: 200px;
 		}
-		h2 {
+		h1 {
 			text-align: center;
 		}
 	}
 
 	.home__form {
+		width: 90%;
+		max-width: 500px;
 		display: flex;
 		flex-direction: column;
-		width: 500px;
-		.home__form__labelContainer {
-			position: relative;
-			label {
-				z-index: 1;
-				span {
-					position: absolute;
-					top: 50%;
-					transform: translateY(-50%);
-					transition: 0.2s;
-				}
-				&.full span {
-					top: 10px;
-					font-size: 0.8em;
-				}
-			}
-			input {
-				display: block;
-				width: 100%;
-				padding: 1.5em 1em 1em;
-			}
+	}
+
+	.form__input {
+		display: block;
+		padding: 0.5em 1em;
+		font: inherit;
+		margin: 0.5em 0;
+		border: 1px solid #ccc;
+		border-radius: 0.5em;
+		box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.1);
+
+		&:hover,
+		&:focus {
+			box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.2);
 		}
+	}
+
+	.form__btn {
+		background-color: var(--clr-primary);
+		color: var(--clr-white);
+		border: 0;
+		font: inherit;
+		font-weight: 800;
+		padding: 0.5em 1em;
+		border-radius: 0.5em;
+		cursor: pointer;
+		margin-top: 0.5em;
 	}
 `;
