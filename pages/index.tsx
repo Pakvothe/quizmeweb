@@ -30,36 +30,40 @@ const Home = () => {
 		<div>
 			<Head>
 				<title>Quizme App</title>
-				<link rel="icon" href="/favicon.ico" />
+				<link rel='icon' href='/favicon.ico' />
 				<link
-					rel="stylesheet"
-					integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+					rel='stylesheet'
+					integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
 				/>
 			</Head>
 			<HomeStyled>
-				<div className="home__logo">
+				<div className='home__logo'>
 					<Image
-						src="/assets/logo.png"
+						src='/assets/logo.png'
 						width={500}
 						height={500}
-						alt="Picture"
+						alt='Picture'
 					/>
-					<h2>QuizMe Web</h2>
+					<h1>QuizMe Web</h1>
 				</div>
-				<form onSubmit={handleSubmit} className="home__form">
-					<div className="home__form__labelContainer">
-						<label className={focus ? 'full' : ''}>
-							<span>Email</span>
-							<input type="email" name="email" onChange={handleChange} />
-						</label>
-					</div>
-					<div className="home__form__labelContainer">
-						<label className={focus ? 'full' : ''}>
-							<span>Password</span>
-							<input type="password" name="password" onChange={handleChange} />
-						</label>
-					</div>
-					<button type="submit">Enviar</button>
+				<form onSubmit={handleSubmit} className='home__form'>
+					<input
+						type='email'
+						name='email'
+						placeholder='email'
+						onChange={handleChange}
+						className='form__input'
+					/>
+					<input
+						className='form__input'
+						placeholder='password'
+						type='password'
+						name='password'
+						onChange={handleChange}
+					/>
+					<button type='submit' className='form__btn'>
+						Enviar
+					</button>
 				</form>
 			</HomeStyled>
 		</div>
