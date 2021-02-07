@@ -5,12 +5,17 @@ import { getUsersByInput } from '../redux/slices/users';
 import { useDispatch } from 'react-redux';
 import { getQuizzesBySearchInput } from '../redux/slices/quizzes';
 import { getCategoriesByInput } from '../redux/slices/categories';
+import strings from '../pages/strings';
+import { useSelector } from 'react-redux';
+import { IState } from '../redux/slices/users';
 
 interface SearchbarProps {}
 
 const Searchbar: React.FC<SearchbarProps> = ({}) => {
 	const [input, setInput] = useState('');
 	const dispatch = useDispatch();
+	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
 
 	const handleSubmit = () => {
 		if (router.pathname.includes('quizzes')) {
@@ -23,7 +28,7 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 		}
 		if (router.pathname.includes('categories')) {
 			return dispatch(getCategoriesByInput(input));
-		}
+		} else return;
 	};
 
 	useEffect(() => {}, []);
@@ -32,7 +37,7 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 		<>
 			<StyledSearchbar
 				type='text'
-				placeholder='Buscar...'
+				placeholder={s.search}
 				value={input}
 				onChange={(e) => {
 					setInput(e.target.value);

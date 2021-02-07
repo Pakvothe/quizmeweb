@@ -7,6 +7,8 @@ import {
 } from '../redux/slices/stats';
 import { IState } from '../redux/slices/users';
 import { Doughnut } from 'react-chartjs-2';
+import StyledStatsContainer from '../styles/StatsStyled';
+import strings from './strings';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
@@ -22,6 +24,8 @@ const Panel: React.FC = () => {
 		loading,
 	} = useSelector((state: IState) => state.stats);
 	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
+
 
 	if (loading) return <h1>Cargando...</h1>;
 
@@ -46,14 +50,18 @@ const Panel: React.FC = () => {
 		],
 	};
 	return (
-		<>
-			<main className='container'>
-				<h1>Stats</h1>
-				<h1>Cantidad de Quizzes {totalQuizzes}</h1>
-				<h1>Nuevos usuarios del mes {totalNewUsers}</h1>
-				<Doughnut data={data} width={400} height={400} />
-			</main>
-		</>
+		<main className='container'>
+			<StyledStatsContainer>
+				<h1 className='title'>{s.statsTitle}</h1>
+				<div className='StatsContainer'>
+					<h1 style={{marginRight: '1em'}}>{s.statsQuantity} {totalQuizzes}</h1>
+					<h1>{s.statsUsers} {totalNewUsers}</h1>
+				</div>
+				<div className='DougContainer'>
+					<Doughnut data={data} width={400} height={300} />
+					</div>
+			</StyledStatsContainer>
+		</main>
 	);
 };
 

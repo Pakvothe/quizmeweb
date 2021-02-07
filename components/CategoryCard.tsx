@@ -1,7 +1,9 @@
 import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { destroyCategory, ICategory } from '../redux/slices/categories';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import strings from '../pages/strings';
+import { IState } from '../redux/slices/users';
 
 interface CategoryCardProps {
 	category: ICategory;
@@ -9,6 +11,8 @@ interface CategoryCardProps {
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 	const dispatch = useDispatch();
+	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
 	return (
 		<StyledQuizCard>
 			<div className='card__info'>
@@ -20,7 +24,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 						dispatch(destroyCategory(category._id as string))
 					}
 				>
-					Eliminar
+					{s.DeleteBtn}
 				</button>
 			</div>
 		</StyledQuizCard>

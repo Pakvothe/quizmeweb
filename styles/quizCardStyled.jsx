@@ -36,10 +36,13 @@ const StyledQuizCard = styled.article`
 			border-bottom: 1px solid #ddd;
 			text-transform: uppercase;
 			cursor: pointer;
+			text-align: center;
 		}
 
 		.info__desc {
 			font-size: 0.9em;
+			text-align: center;
+			margin: auto;
 			margin-bottom: 1em;
 		}
 	}

@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IState, logout } from '../redux/slices/users';
 import { useRouter } from 'next/router';
 import { changeLanguage } from '../redux/slices/global';
+import strings from '../pages/strings';
+
 const Nav = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
 
 	return (
 		<StyledNav>
@@ -17,7 +20,7 @@ const Nav = () => {
 				<ul className='main-nav'>
 					<li>
 						<Link href='/stats'>
-							<a>Estadísticas</a>
+							<a>{s.stats}</a>
 						</Link>
 					</li>
 					<li>
@@ -27,12 +30,12 @@ const Nav = () => {
 					</li>
 					<li>
 						<Link href='/categories'>
-							<a>Categorías</a>
+							<a>{s.category}</a>
 						</Link>
 					</li>
 					<li>
 						<Link href='/users'>
-							<a>Usuarios</a>
+							<a>{s.user}</a>
 						</Link>
 					</li>
 				</ul>
@@ -43,7 +46,7 @@ const Nav = () => {
 							dispatch(changeLanguage());
 						}}
 					>
-						{language === 'es' ? 'Idioma' : 'Language'}
+						{s.language}
 					</li>
 					<li
 						onClick={() => {
@@ -51,7 +54,7 @@ const Nav = () => {
 							router.push('/');
 						}}
 					>
-						Cerrar sesión
+						{s.logout}
 					</li>
 				</ul>
 			</div>
