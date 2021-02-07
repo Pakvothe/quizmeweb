@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HomeStyled } from '../styles/homeStyled';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { IState, userLogin } from '../redux/slices/users';
+import { userLogin } from '../redux/slices/users';
 
 const Home = () => {
 	const router = useRouter();

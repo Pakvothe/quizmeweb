@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardsContainer from '../../components/CardsContainer';
-import { IState } from '../../redux/slices/users';
+import { IState } from '../../types/slices';
 import { getCategories } from '../../redux/slices/categories';
 import Link from 'next/link';
 import styled from 'styled-components';

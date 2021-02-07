@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getClient } from '../../constants/api';
+import { IQuiz } from '../../types/quizzes';
 import {
 	mutationDestroyQuiz,
 	queryAllQuizzes,
 	queryGetQuiz,
 	queryGetQuizzesBySearchInput,
 } from '../querys/quizzes';
-import { IQuiz } from './users';
 
 export const getQuizzes = createAsyncThunk('quizzes/all', async () => {
 	const client = getClient();
@@ -44,11 +44,14 @@ export const getQuizzesBySearchInput = createAsyncThunk(
 	'quiz/getQuizzesBySearchInput',
 	async (payload: IQuizzesInputPayload) => {
 		const client = getClient();
-		const clientRequest = await client.request(queryGetQuizzesBySearchInput, {
-			input: payload.input,
-			categoryFilter: payload.categoryFilter,
-			page: payload.page,
-		});
+		const clientRequest = await client.request(
+			queryGetQuizzesBySearchInput,
+			{
+				input: payload.input,
+				categoryFilter: payload.categoryFilter,
+				page: payload.page,
+			}
+		);
 		return clientRequest.getQuizzesByInputSearch;
 	}
 );
@@ -78,15 +81,21 @@ const quizzesSlice = createSlice({
 			state.quizDetail = payload;
 			state.loading = false;
 		});
-		builder.addCase(getQuizzesBySearchInput.pending, (state, { payload }) => {
-			state.loading = true;
-		});
-		builder.addCase(getQuizzesBySearchInput.fulfilled, (state, { payload }) => {
-			state.quizzes = payload.quizzes;
-			state.hasNextPage = payload.hasNextPage;
-			state.page = payload.page;
-			state.loading = false;
-		});
+		builder.addCase(
+			getQuizzesBySearchInput.pending,
+			(state, { payload }) => {
+				state.loading = true;
+			}
+		);
+		builder.addCase(
+			getQuizzesBySearchInput.fulfilled,
+			(state, { payload }) => {
+				state.quizzes = payload.quizzes;
+				state.hasNextPage = payload.hasNextPage;
+				state.page = payload.page;
+				state.loading = false;
+			}
+		);
 		builder.addCase(destroyQuiz.pending, (state) => {
 			state.loading = true;
 		});

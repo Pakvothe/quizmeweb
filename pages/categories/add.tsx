@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createCategory } from '../../redux/slices/categories';
-import { IState } from '../../redux/slices/users';
 import { Form, Button } from '../../styles/styledGlobal';
 import strings from '../strings';
 
