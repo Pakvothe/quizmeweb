@@ -4,11 +4,11 @@ import {
 	getNewUsers,
 	getQuizzesByCategories,
 	getTotalQuiz,
-} from '../redux/slices/stats';
+} from '../../redux/slices/stats';
 import { Doughnut } from 'react-chartjs-2';
-import StyledStatsContainer from '../styles/StatsStyled';
-import strings from './strings';
-import { IState } from '../types/slices';
+import StyledStatsContainer from '../../styles/StatsStyled';
+import strings from '../strings';
+import { IState } from '../../types/slices';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
