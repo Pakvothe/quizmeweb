@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyledSearchbar, StyledBarButton } from '../styles/searchBarStyled';
 import router from 'next/router';
 import { getUsersByInput } from '../redux/slices/users';
@@ -7,7 +7,9 @@ import { getQuizzesBySearchInput } from '../redux/slices/quizzes';
 import { getCategoriesByInput } from '../redux/slices/categories';
 import strings from '../pages/strings';
 import { useSelector } from 'react-redux';
-import { IState } from '../redux/slices/users';
+
+/* --- Types --- */
+import { IState } from '../types/slices';
 
 interface SearchbarProps {}
 
@@ -17,8 +19,8 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 	const { language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
 
-	const handleSubmit = (ev) => {
-		ev.preventDefault()
+	const handleSubmit = (ev: React.FormEvent) => {
+		ev.preventDefault();
 		if (router.pathname.includes('quizzes')) {
 			return dispatch(
 				getQuizzesBySearchInput({ input, categoryFilter: '', page: 1 })
@@ -41,8 +43,7 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 					setInput(e.target.value);
 				}}
 			/>
-			<StyledBarButton type='submit'
-				>{s.searchBtn}</StyledBarButton>
+			<StyledBarButton type='submit'>{s.searchBtn}</StyledBarButton>
 		</form>
 	);
 };

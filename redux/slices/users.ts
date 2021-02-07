@@ -1,23 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { getClient } from '../../constants/api';
-import { ICategory } from './categories';
+import { IPayloadActivate, IUserLogin } from '../../types/users';
 import {
 	mutationActivateUser,
 	queryGetUsers,
 	queryGetUsersByInput,
 } from '../querys/users';
 const URL_API = process.env.URL_API;
-
-interface IUserLogin {
-	email: string;
-	password: string;
-}
-
-interface IPayloadActivate {
-	userId: string;
-	isActive: boolean;
-}
 
 export const userLogin = createAsyncThunk(
 	'user/login',
@@ -55,101 +45,6 @@ export const getUsersByInput = createAsyncThunk(
 		return clientRequest.getUsersByInput;
 	}
 );
-
-export interface IUserState {
-	user: IUser;
-	users: IUserFull[];
-	token: string;
-	loading: boolean;
-}
-
-export interface IStatsCategory {
-	[key: string]: string | number;
-	id: string;
-	description_en: string;
-	description_es: string;
-	value: number;
-}
-
-export interface IStatsState {
-	totalQuizzes: number;
-	totalNewUsers: number;
-	quizzesByCategories: IStatsCategory[];
-	loading: boolean;
-}
-
-export interface ICategoriesState {
-	categories: Array<ICategory>;
-	loading: false;
-}
-
-enum Language {
-	ES = 'es',
-	EN = 'en',
-}
-
-export interface IQuizzesState {
-	quizzes: Array<IQuiz>;
-	quizDetail: IQuiz;
-	loading: boolean;
-}
-
-export interface IQuiz {
-	_id: string;
-	title: string;
-	description: string;
-	image: string;
-	language: string;
-	likes: number;
-	creatorId: string;
-	categoryId: string;
-	questions: string[];
-	time: number;
-	highScores: [
-		{
-			user: string;
-			score: number;
-		}
-	];
-	type: string;
-}
-
-export interface IGlobalState {
-	language: Language;
-}
-
-export interface IState {
-	global: IGlobalState;
-	users: IUserState;
-	quizzes: IQuizzesState;
-	categories: ICategoriesState;
-	stats: IStatsState;
-}
-
-export interface IUser {
-	_id: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	profilePic: string;
-	countryCode: string;
-	role: string;
-	updatedAt: string;
-	premium: boolean;
-}
-
-export interface IUserFull {
-	_id: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	profilePic: string;
-	countryCode: string;
-	role: string;
-	updatedAt: string;
-	premium: boolean;
-	isActive: boolean;
-}
 
 const usersSlice = createSlice({
 	name: 'user',

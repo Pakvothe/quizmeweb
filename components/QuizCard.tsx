@@ -1,13 +1,13 @@
 import React from 'react';
-import { IQuiz, IState } from '../redux/slices/users';
 import StyledQuizCard from '../styles/quizCardStyled';
 import Link from 'next/link';
 import strings from '../pages/strings';
 import { useDispatch, useSelector } from 'react-redux';
 import { destroyQuiz } from '../redux/slices/quizzes';
-interface QuizCardProps {
-	quiz: IQuiz;
-}
+
+/* --- Types --- */
+import { IState } from '../types/slices';
+import { QuizCardProps } from '../types/quizzes';
 
 const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
 	const { language } = useSelector((state: IState) => state.global);

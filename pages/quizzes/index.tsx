@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CardsContainer from '../components/CardsContainer';
-import { IState } from '../redux/slices/users';
-import { getQuizzes } from '../redux/slices/quizzes';
+import CardsContainer from '../../components/CardsContainer';
+import { getQuizzes } from '../../redux/slices/quizzes';
+import { IState } from '../../types/slices';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();

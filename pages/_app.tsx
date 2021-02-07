@@ -5,6 +5,7 @@ import store from '../redux/store';
 import Nav from '../components/Nav';
 import { useEffect } from 'react';
 import { setLanguage } from '../redux/slices/global';
+import Head from 'next/head';
 
 interface IProps {
 	Component: React.FC;
@@ -46,6 +47,14 @@ function MyApp({ Component, pageProps }: IProps) {
 
 	return (
 		<Provider store={store}>
+			<Head>
+				<title>Quizme App</title>
+				<link rel='icon' href='/assets/icon.png' />
+				<link
+					rel='stylesheet'
+					integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
+				/>
+			</Head>
 			{router.pathname === '/' || <Nav />}
 
 			<Component {...pageProps} />

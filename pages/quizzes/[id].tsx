@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getQuiz } from '../../redux/slices/quizzes';
-import { IState } from '../../redux/slices/users';
+import { IState } from '../../types/slices';
 import QuizCard from '../../components/QuizCard';
 interface quizzesProps {}
 

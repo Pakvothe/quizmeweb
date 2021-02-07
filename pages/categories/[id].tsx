@@ -1,9 +1,17 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCategory } from '../../redux/slices/categories';
-import { Form, Button } from '../../styles/styledGlobal';
+
+/* --- ReduxActions --- */
+import { createCategory, updateCategory } from '../../redux/slices/categories';
+
+/* --- Types --- */
 import { IState } from '../../types/slices';
+
+/* --- Styles --- */
+import { Form, Button } from '../../styles/styledGlobal';
+
+/* --- Utils --- */
 import strings from '../strings';
 
 const AddCategory: React.FC = () => {
@@ -13,13 +21,16 @@ const AddCategory: React.FC = () => {
 	const s = strings[language];
 
 	const [input, setInput] = useState({
-		description_es: '',
-		description_en: '',
+		description_es: router.query.description_es as string,
+		description_en: router.query.description_en as string,
 	});
 
 	const handleSubmit = async (ev: React.FormEvent) => {
 		ev.preventDefault();
-		await dispatch(createCategory(input));
+		const { id: catId } = router.query;
+		await dispatch(
+			updateCategory({ category: input, catId: catId as string })
+		);
 		router.push('/categories');
 	};
 
@@ -67,7 +78,7 @@ const AddCategory: React.FC = () => {
 						}
 						value={input.description_en}
 					/>
-					<Button type='submit'>{s.addBtn}</Button>
+					<Button type='submit'>{s.editBtn}</Button>
 				</Form>
 			</div>
 		</main>

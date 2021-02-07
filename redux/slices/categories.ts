@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getClient } from '../../constants/api';
+import { ICategory, IPayloadCategory } from '../../types/categories';
 import {
 	getAllCategories,
 	mutationCreateCategory,
@@ -7,21 +8,6 @@ import {
 	mutationUpdateCategory,
 	queryGetCategoriesByInput,
 } from '../querys/categories';
-
-export interface ICategory {
-	[key: string]: string | undefined;
-	_id?: string;
-	description_en: string;
-	description_es: string;
-}
-
-interface IPayloadCategory {
-	category: {
-		description_en: string;
-		description_es: string;
-	};
-	catId: string;
-}
 
 export const getCategories = createAsyncThunk(
 	'category/getAll',
@@ -86,7 +72,9 @@ const categorySlice = createSlice({
 	reducers: {
 		sortCategories: (state, { payload }) => {
 			state.categories = state.categories.sort((a, b) =>
-				a[`description_${payload}`] > b[`description_${payload}`] ? 1 : -1
+				a[`description_${payload}`] > b[`description_${payload}`]
+					? 1
+					: -1
 			);
 		},
 	},
@@ -117,10 +105,13 @@ const categorySlice = createSlice({
 		builder.addCase(getCategoriesByInput.pending, (state) => {
 			state.loading = true;
 		});
-		builder.addCase(getCategoriesByInput.fulfilled, (state, { payload }) => {
-			state.categories = payload;
-			state.loading = false;
-		});
+		builder.addCase(
+			getCategoriesByInput.fulfilled,
+			(state, { payload }) => {
+				state.categories = payload;
+				state.loading = false;
+			}
+		);
 	},
 });
 
