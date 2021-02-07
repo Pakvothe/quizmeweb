@@ -1,8 +1,8 @@
 import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
-import { destroyCategory, ICategory } from '../redux/slices/categories';
-import { useDispatch } from 'react-redux';
-import { activateUser, IUserFull } from '../redux/slices/users';
+import { useDispatch, useSelector } from 'react-redux';
+import { activateUser, IState, IUserFull } from '../redux/slices/users';
+import strings from '../pages/strings';
 
 interface UserCardProps {
 	user: IUserFull;
@@ -10,6 +10,8 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
 	const dispatch = useDispatch();
+	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
 	return (
 		<StyledQuizCard>
 			<div className='card__info'>
@@ -33,7 +35,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 						);
 					}}
 				>
-					{user.isActive ? 'Bloquear Usuario' : 'Activar Usuario'}
+					{user.isActive ? s.BlockUserBtn : s.ActivateUserBtn}
 				</button>
 			</div>
 		</StyledQuizCard>

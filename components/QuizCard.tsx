@@ -1,14 +1,16 @@
 import React from 'react';
-import Image from 'next/image';
-import { IQuiz } from '../redux/slices/users';
+import { IQuiz, IState } from '../redux/slices/users';
 import StyledQuizCard from '../styles/quizCardStyled';
 import Link from 'next/link';
-
+import strings from '../pages/strings';
+import { useSelector } from 'react-redux';
 interface QuizCardProps {
 	quiz: IQuiz;
 }
 
 const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
+	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
 	return (
 		<StyledQuizCard>
 			<div className='card__img'>
@@ -19,7 +21,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
 					<h1 className='info__title'>{quiz.title}</h1>
 				</Link>
 				<p className='info__desc'>{quiz.description}</p>
-				<button className='card__button'>Eliminar</button>
+				<button className='card__button'>{s.DeleteBtn}</button>
 			</div>
 		</StyledQuizCard>
 	);
