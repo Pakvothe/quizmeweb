@@ -7,9 +7,11 @@ import { getQuizzes } from '../redux/slices/quizzes';
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
 	const { quizzes } = useSelector((state: IState) => state.quizzes);
+
 	useEffect(() => {
 		dispatch(getQuizzes());
 	}, []);
+
 	return (
 		<>
 			<main className='container'>

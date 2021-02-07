@@ -5,6 +5,7 @@ import {
 	mutationCreateCategory,
 	mutationDestroyCategory,
 	mutationUpdateCategory,
+	queryGetCategoriesByInput,
 } from '../querys/categories';
 
 export interface ICategory {
@@ -52,6 +53,7 @@ export const createCategory = createAsyncThunk(
 		return clientRequest;
 	}
 );
+
 export const updateCategory = createAsyncThunk(
 	'category/updateOne',
 	async (payload: IPayloadCategory) => {
@@ -64,6 +66,17 @@ export const updateCategory = createAsyncThunk(
 	}
 );
 
+export const getCategoriesByInput = createAsyncThunk(
+	'category/getCategoriesByInput',
+	async (payload: string) => {
+		const client = getClient();
+		const clientRequest = await client.request(queryGetCategoriesByInput, {
+			payload,
+		});
+		return clientRequest.getCategoriesByInput;
+	}
+);
+
 const categorySlice = createSlice({
 	name: 'quiz',
 	initialState: {
@@ -73,9 +86,7 @@ const categorySlice = createSlice({
 	reducers: {
 		sortCategories: (state, { payload }) => {
 			state.categories = state.categories.sort((a, b) =>
-				a[`description_${payload}`] > b[`description_${payload}`]
-					? 1
-					: -1
+				a[`description_${payload}`] > b[`description_${payload}`] ? 1 : -1
 			);
 		},
 	},
@@ -102,6 +113,13 @@ const categorySlice = createSlice({
 					(category: ICategory) => category._id !== payload.id
 				);
 			}
+		});
+		builder.addCase(getCategoriesByInput.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(getCategoriesByInput.fulfilled, (state, { payload }) => {
+			state.categories = payload;
+			state.loading = false;
 		});
 	},
 });

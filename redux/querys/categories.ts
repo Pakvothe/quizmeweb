@@ -34,3 +34,13 @@ export const mutationUpdateCategory = gql`
 		updateCategory(catId: $catId, category: $category)
 	}
 `;
+
+export const queryGetCategoriesByInput = gql`
+	query($payload: String!) {
+		getCategoriesByInput(input: $payload) {
+			_id
+			description_en
+			description_es
+		}
+	}
+`;

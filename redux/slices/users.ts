@@ -2,7 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { getClient } from '../../constants/api';
 import { ICategory } from './categories';
-import { mutationActivateUser, queryGetUsers } from '../querys/users';
+import {
+	mutationActivateUser,
+	queryGetUsers,
+	queryGetUsersByInput,
+} from '../querys/users';
 const URL_API = process.env.URL_API;
 
 interface IUserLogin {
@@ -40,6 +44,17 @@ export const getUsers = createAsyncThunk('user/getUsers', async () => {
 	const clientRequest = await client.request(queryGetUsers);
 	return clientRequest.getUsers;
 });
+
+export const getUsersByInput = createAsyncThunk(
+	'user/getUsersByInput',
+	async (payload: string) => {
+		const client = getClient();
+		const clientRequest = await client.request(queryGetUsersByInput, {
+			payload,
+		});
+		return clientRequest.getUsersByInput;
+	}
+);
 
 export interface IUserState {
 	user: IUser;
@@ -168,6 +183,13 @@ const usersSlice = createSlice({
 			state.loading = true;
 		});
 		builder.addCase(getUsers.fulfilled, (state, { payload }) => {
+			state.users = payload;
+			state.loading = false;
+		});
+		builder.addCase(getUsersByInput.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(getUsersByInput.fulfilled, (state, { payload }) => {
 			state.users = payload;
 			state.loading = false;
 		});

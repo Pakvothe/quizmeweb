@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getClient } from '../../constants/api';
-import { queryAllQuizzes, queryGetQuiz } from '../querys/quizzes';
+import {
+	queryAllQuizzes,
+	queryGetQuiz,
+	queryGetQuizzesBySearchInput,
+} from '../querys/quizzes';
 
 export const getQuizzes = createAsyncThunk('quizzes/all', async () => {
 	const client = getClient();
@@ -17,12 +21,33 @@ export const getQuiz = createAsyncThunk(
 	}
 );
 
+interface IQuizzesInputPayload {
+	input: string;
+	categoryFilter: string;
+	page: number;
+}
+
+export const getQuizzesBySearchInput = createAsyncThunk(
+	'quiz/getQuizzesBySearchInput',
+	async (payload: IQuizzesInputPayload) => {
+		const client = getClient();
+		const clientRequest = await client.request(queryGetQuizzesBySearchInput, {
+			input: payload.input,
+			categoryFilter: payload.categoryFilter,
+			page: payload.page,
+		});
+		return clientRequest.getQuizzesByInputSearch;
+	}
+);
+
 const quizzesSlice = createSlice({
 	name: 'quizzes',
 	initialState: {
 		quizzes: [],
 		quizDetail: {},
 		loading: false,
+		hasNextPage: false,
+		page: 1,
 	},
 	reducers: {},
 	extraReducers: (builder) => {
@@ -38,6 +63,15 @@ const quizzesSlice = createSlice({
 		});
 		builder.addCase(getQuiz.fulfilled, (state, { payload }) => {
 			state.quizDetail = payload;
+			state.loading = false;
+		});
+		builder.addCase(getQuizzesBySearchInput.pending, (state, { payload }) => {
+			state.loading = true;
+		});
+		builder.addCase(getQuizzesBySearchInput.fulfilled, (state, { payload }) => {
+			state.quizzes = payload.quizzes;
+			state.hasNextPage = payload.hasNextPage;
+			state.page = payload.page;
 			state.loading = false;
 		});
 	},

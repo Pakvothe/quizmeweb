@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { StyledNav } from '../styles/navStyled';
 import Searchbar from './Searchbar';
@@ -10,6 +10,7 @@ const Nav = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { language } = useSelector((state: IState) => state.global);
+
 	return (
 		<StyledNav>
 			<div className='container nav-container'>

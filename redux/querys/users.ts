@@ -100,3 +100,12 @@ export const mutationPremiumUser = gql`
 		premiumUser
 	}
 `;
+
+export const queryGetUsersByInput = gql`
+	query($payload: String) {
+		getUsersByInput(input: $payload) {
+			...EntireUserInfo
+		}
+	}
+	${EntireUserInfo}
+`;
