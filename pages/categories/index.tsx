@@ -5,9 +5,13 @@ import { IState } from '../../redux/slices/users';
 import { getCategories } from '../../redux/slices/categories';
 import Link from 'next/link';
 import styled from 'styled-components';
+import strings from '../../pages/strings';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
+	const { language } = useSelector((state: IState) => state.global);
+	const s = strings[language];
+
 	const { categories } = useSelector((state: IState) => state.categories);
 	useEffect(() => {
 		dispatch(getCategories());
@@ -16,9 +20,15 @@ const Panel: React.FC = () => {
 		<>
 			<main className='container'>
 				<Link href='/categories/add'>
-					<div style={{width:'100%', display: 'flex', justifyContent:'flex-end'}}>
-						<Button >Agregar Categoria</Button>
-						</div>
+					<div
+						style={{
+							width: '100%',
+							display: 'flex',
+							justifyContent: 'flex-end',
+						}}
+					>
+						<Button>{s.addCat}</Button>
+					</div>
 				</Link>
 				<CardsContainer categories={categories} />
 			</main>
@@ -37,13 +47,13 @@ const Button = styled.button`
 	cursor: pointer;
 	margin: 0 2.6em 2em 1em;
 
-		&:hover {
-			box-shadow: inset 0 0 7px rgba(0,0,0,0.3);
-		}
+	&:hover {
+		box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
+	}
 
-		&:focus{
-			outline: none;
-		}
-`
+	&:focus {
+		outline: none;
+	}
+`;
 
 export default Panel;
