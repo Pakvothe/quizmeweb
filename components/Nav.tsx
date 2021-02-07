@@ -41,6 +41,11 @@ const Nav = () => {
 							<a>{s.user}</a>
 						</Link>
 					</li>
+					<li>
+						<Link href='/users'>
+							<a>{s.validations}</a>
+						</Link>
+					</li>
 				</ul>
 				<div style={{ display: 'flex', alignItems: 'center' }}>
 					<Searchbar />

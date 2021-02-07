@@ -36,4 +36,12 @@ export const StyledNav = styled.nav`
 		}
 		cursor: pointer;
 	}
+	@media (max-width: 1100px) {
+		.nav-container {
+			flex-direction: column;
+		}
+		ul {
+			margin-bottom: 1em;
+		}
+	}
 `;

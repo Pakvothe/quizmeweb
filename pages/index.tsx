@@ -30,14 +30,6 @@ const Home = () => {
 	};
 	return (
 		<div>
-			<Head>
-				<title>Quizme App</title>
-				<link rel='icon' href='/favicon.ico' />
-				<link
-					rel='stylesheet'
-					integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
-				/>
-			</Head>
 			<HomeStyled>
 				<div className='home__logo'>
 					<Image

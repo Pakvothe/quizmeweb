@@ -16,6 +16,7 @@ const strings = {
 		searchBtn: 'Search',
 		addCat: 'Add Categories',
 		addBtn: 'Add',
+		validations: 'Validations',
 	},
 
 	es: {
@@ -35,6 +36,7 @@ const strings = {
 		searchBtn: 'Buscar',
 		addCat: 'Agregar Categorías',
 		addBtn: 'Agregar',
+		validations: 'Validaciones',
 	},
 };
 
