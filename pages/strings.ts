@@ -11,7 +11,10 @@ const strings = {
 		user: 'Users',
 		language: 'Language',
 		logout:'Log out',
-		search:'Search...'
+		search:'Search...',
+		searchBtn:'Search',
+		addCat: 'Add Categories',
+		addBtn:'Add'
 	},
 	
 	es: {
@@ -26,7 +29,10 @@ const strings = {
 		user:'Usuarios',
 		language: 'Idioma',
 		logout:'Cerrar sesión',
-		search:'Buscar...'
+		search:'Buscar...',
+		searchBtn:'Buscar',
+		addCat:'Agregar Categorías',
+		addBtn:'Agregar'
 	},
 };
 

@@ -45,7 +45,7 @@ export const destroyCategory = createAsyncThunk(
 
 export const createCategory = createAsyncThunk(
 	'category/createOne',
-	async (payload) => {
+	async (payload: ICategory) => {
 		const client = getClient();
 		const clientRequest = await client.request(mutationCreateCategory, {
 			category: payload,

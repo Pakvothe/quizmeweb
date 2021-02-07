@@ -39,6 +39,7 @@ const Nav = () => {
 						</Link>
 					</li>
 				</ul>
+				<div style={{display: 'flex', alignItems:'center'}}>
 				<Searchbar />
 				<ul className='side-nav'>
 					<li
@@ -56,7 +57,8 @@ const Nav = () => {
 					>
 						{s.logout}
 					</li>
-				</ul>
+					</ul>
+					</div>
 			</div>
 		</StyledNav>
 	);

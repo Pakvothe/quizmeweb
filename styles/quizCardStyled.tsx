@@ -61,6 +61,10 @@ const StyledQuizCard = styled.article`
 
 		&:hover {
 			background-color: var(--clr-error-2);
+			box-shadow: inset 0 0 7px rgba(0,0,0,0.3);
+		}
+		&:focus{
+		outline: none;
 		}
 	}
 `;
