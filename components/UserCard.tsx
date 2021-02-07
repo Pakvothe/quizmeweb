@@ -1,8 +1,12 @@
 import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { useDispatch, useSelector } from 'react-redux';
-import { activateUser, IState, IUserFull } from '../redux/slices/users';
+import { activateUser } from '../redux/slices/users';
 import strings from '../pages/strings';
+
+/* --- Types --- */
+import { IUserFull } from '../types/users';
+import { IState } from '../types/slices';
 
 interface UserCardProps {
 	user: IUserFull;

@@ -1,16 +1,12 @@
 import React from 'react';
 import QuizCard from '../components/QuizCard';
 import StyledCardsContainer from '../styles/cardsContainerStyled';
-import { IQuiz, IUserFull } from '../redux/slices/users';
-import { ICategory } from '../redux/slices/categories';
 import CategoryCard from './CategoryCard';
 import UserCard from './UserCard';
 
-interface CardsContainerProps {
-	quizzes?: IQuiz[];
-	categories?: ICategory[];
-	users?: IUserFull[];
-}
+/* --- Types --- */
+import { CardsContainerProps } from '../types/categories';
+
 const CardsContainer: React.FC<CardsContainerProps> = ({
 	quizzes,
 	categories,

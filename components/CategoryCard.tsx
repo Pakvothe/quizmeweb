@@ -1,13 +1,12 @@
 import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
-import { destroyCategory, ICategory } from '../redux/slices/categories';
+import { destroyCategory } from '../redux/slices/categories';
 import { useDispatch, useSelector } from 'react-redux';
 import strings from '../pages/strings';
-import { IState } from '../redux/slices/users';
 
-interface CategoryCardProps {
-	category: ICategory;
-}
+/* --- Types --- */
+import { CategoryCardProps } from '../types/categories';
+import { IState } from '../types/slices';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 	const dispatch = useDispatch();

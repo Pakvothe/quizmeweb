@@ -23,3 +23,7 @@ export interface IQuiz {
 	];
 	type: string;
 }
+
+export interface QuizCardProps {
+	quiz: IQuiz;
+}

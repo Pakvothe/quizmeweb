@@ -3,10 +3,13 @@ import Link from 'next/link';
 import { StyledNav } from '../styles/navStyled';
 import Searchbar from './Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { IState, logout } from '../redux/slices/users';
+import { logout } from '../redux/slices/users';
 import { useRouter } from 'next/router';
 import { changeLanguage } from '../redux/slices/global';
 import strings from '../pages/strings';
+
+/* --- Types --- */
+import { IState } from '../types/slices';
 
 const Nav = () => {
 	const dispatch = useDispatch();
@@ -39,26 +42,26 @@ const Nav = () => {
 						</Link>
 					</li>
 				</ul>
-				<div style={{display: 'flex', alignItems:'center'}}>
-				<Searchbar />
-				<ul className='side-nav'>
-					<li
-						onClick={() => {
-							dispatch(changeLanguage());
-						}}
-					>
-						{s.language}
-					</li>
-					<li
-						onClick={() => {
-							dispatch(logout());
-							router.push('/');
-						}}
-					>
-						{s.logout}
-					</li>
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<Searchbar />
+					<ul className='side-nav'>
+						<li
+							onClick={() => {
+								dispatch(changeLanguage());
+							}}
+						>
+							{s.language}
+						</li>
+						<li
+							onClick={() => {
+								dispatch(logout());
+								router.push('/');
+							}}
+						>
+							{s.logout}
+						</li>
 					</ul>
-					</div>
+				</div>
 			</div>
 		</StyledNav>
 	);

@@ -1,3 +1,6 @@
+import { IQuiz } from './quizzes';
+import { IUserFull } from './users';
+
 export interface ICategory {
 	[key: string]: string | undefined;
 	_id?: string;
@@ -16,4 +19,14 @@ export interface IPayloadCategory {
 export interface ICategoriesState {
 	categories: Array<ICategory>;
 	loading: false;
+}
+
+export interface CategoryCardProps {
+	category: ICategory;
+}
+
+export interface CardsContainerProps {
+	quizzes?: IQuiz[];
+	categories?: ICategory[];
+	users?: IUserFull[];
 }
