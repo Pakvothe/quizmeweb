@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardsContainer from '../../components/CardsContainer';
-import { getQuizzes } from '../../redux/slices/quizzes';
+import { getQuizzesBySearchInput } from '../../redux/slices/quizzes';
 import { IState } from '../../types/slices';
 
 const Panel: React.FC = () => {
@@ -9,7 +9,9 @@ const Panel: React.FC = () => {
 	const { quizzes } = useSelector((state: IState) => state.quizzes);
 
 	useEffect(() => {
-		dispatch(getQuizzes());
+		dispatch(
+			getQuizzesBySearchInput({ input: '', categoryFilter: '', page: 1 })
+		);
 	}, []);
 
 	return (

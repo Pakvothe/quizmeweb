@@ -4,6 +4,7 @@ const globalSlice = createSlice({
 	name: 'global',
 	initialState: {
 		language: 'es',
+		savedInput: '',
 	},
 	reducers: {
 		changeLanguage: (state) => {
@@ -13,9 +14,12 @@ const globalSlice = createSlice({
 		setLanguage: (state, { payload }) => {
 			state.language = payload;
 		},
+		saveInput: (state, { payload }) => {
+			state.savedInput = payload;
+		},
 	},
 });
 
-export const { changeLanguage, setLanguage } = globalSlice.actions;
+export const { changeLanguage, setLanguage, saveInput } = globalSlice.actions;
 
 export default globalSlice.reducer;

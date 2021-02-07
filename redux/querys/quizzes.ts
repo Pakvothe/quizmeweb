@@ -74,6 +74,7 @@ export const queryGetQuizzesBySearchInput = gql`
 				...EntireQuizInfo
 			}
 			hasNextPage
+			totalPages
 		}
 	}
 	${EntireQuizInfo}

@@ -5,6 +5,7 @@ import { getUsersByInput } from '../redux/slices/users';
 import { useDispatch } from 'react-redux';
 import { getQuizzesBySearchInput } from '../redux/slices/quizzes';
 import { getCategoriesByInput } from '../redux/slices/categories';
+import { saveInput } from '../redux/slices/global';
 import strings from '../pages/strings';
 import { useSelector } from 'react-redux';
 
@@ -21,6 +22,7 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 
 	const handleSubmit = (ev: React.FormEvent) => {
 		ev.preventDefault();
+		dispatch(saveInput(input));
 		if (router.pathname.includes('quizzes')) {
 			return dispatch(
 				getQuizzesBySearchInput({ input, categoryFilter: '', page: 1 })
@@ -39,7 +41,7 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 			<StyledSearchbar
 				type='text'
 				value={input}
-				onChange={(e) => {
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 					setInput(e.target.value);
 				}}
 			/>
