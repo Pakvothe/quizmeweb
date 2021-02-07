@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }: IProps) {
 		<Provider store={store}>
 			<Head>
 				<title>Quizme App</title>
-				<link rel='icon' href='../assets/icon.png' />
+				<link rel='icon' href='/assets/icon.png' />
 				<link
 					rel='stylesheet'
 					integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
