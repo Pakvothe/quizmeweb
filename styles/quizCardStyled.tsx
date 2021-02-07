@@ -48,7 +48,6 @@ const StyledQuizCard = styled.article`
 	}
 
 	.card__button {
-		background: var(--clr-error);
 		border: 0;
 		color: var(--clr-white);
 		font: inherit;
@@ -59,12 +58,25 @@ const StyledQuizCard = styled.article`
 		padding: 0.5em;
 		border-radius: 0.5em;
 
-		&:hover {
-			background-color: var(--clr-error-2);
-			box-shadow: inset 0 0 7px rgba(0,0,0,0.3);
+		&.error {
+			background: var(--clr-error);
+			&:hover {
+				background-color: var(--clr-error-2);
+			}
 		}
-		&:focus{
-		outline: none;
+
+		&.warning {
+			background: var(--clr-warning);
+			&:hover {
+				background-color: var(--clr-warning-2);
+			}
+		}
+
+		&:hover {
+			box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
+		}
+		&:focus {
+			outline: none;
 		}
 	}
 `;
