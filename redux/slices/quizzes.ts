@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getClient } from '../../constants/api';
 import {
+	mutationDestroyQuiz,
 	queryAllQuizzes,
 	queryGetQuiz,
 	queryGetQuizzesBySearchInput,
 } from '../querys/quizzes';
+import { IQuiz } from './users';
 
 export const getQuizzes = createAsyncThunk('quizzes/all', async () => {
 	const client = getClient();
@@ -18,6 +20,17 @@ export const getQuiz = createAsyncThunk(
 		const client = getClient();
 		const clientRequest = await client.request(queryGetQuiz, { payload });
 		return clientRequest.getQuiz;
+	}
+);
+
+export const destroyQuiz = createAsyncThunk(
+	'quizzes/destroyQuiz',
+	async (payload: string) => {
+		const client = getClient();
+		const clientRequest = await client.request(mutationDestroyQuiz, {
+			quizId: payload,
+		});
+		return { destroyQuiz: clientRequest.destroyQuiz, id: payload };
 	}
 );
 
@@ -72,6 +85,17 @@ const quizzesSlice = createSlice({
 			state.quizzes = payload.quizzes;
 			state.hasNextPage = payload.hasNextPage;
 			state.page = payload.page;
+			state.loading = false;
+		});
+		builder.addCase(destroyQuiz.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(destroyQuiz.fulfilled, (state, { payload }) => {
+			if (payload.destroyQuiz) {
+				state.quizzes = state.quizzes.filter(
+					(quiz: IQuiz) => quiz._id !== payload.id
+				);
+			}
 			state.loading = false;
 		});
 	},
