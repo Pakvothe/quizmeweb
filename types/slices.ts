@@ -10,6 +10,7 @@ enum Language {
 
 export interface IGlobalState {
 	language: Language;
+	savedInput: string;
 }
 
 export interface IState {

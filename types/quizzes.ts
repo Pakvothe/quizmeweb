@@ -2,6 +2,8 @@ export interface IQuizzesState {
 	quizzes: Array<IQuiz>;
 	quizDetail: IQuiz;
 	loading: boolean;
+	totalPages: boolean;
+	page: number;
 }
 
 export interface IQuiz {
