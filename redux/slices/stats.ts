@@ -4,6 +4,7 @@ import {
 	queryGetTotalQuiz,
 	queryGetNewUsers,
 	queryGetQuizzesByCategories,
+	queryGetUserStats,
 } from '../querys/stats';
 
 export const getTotalQuiz = createAsyncThunk('stats/quizzes', async () => {
@@ -16,6 +17,12 @@ export const getNewUsers = createAsyncThunk('stats/newUsers', async () => {
 	const client = getClient();
 	const clientRequest = await client.request(queryGetNewUsers);
 	return clientRequest.getNewUsers;
+});
+
+export const getUserStats = createAsyncThunk('stats/getUserStats', async () => {
+	const client = getClient();
+	const clientRequest = await client.request(queryGetUserStats);
+	return clientRequest.getUserStats;
 });
 
 export const getQuizzesByCategories = createAsyncThunk(
@@ -34,6 +41,7 @@ const statsSlice = createSlice({
 		totalNewUsers: 0,
 		quizzesByCategories: [],
 		loading: false,
+		users: {},
 	},
 	reducers: {},
 	extraReducers: (builder) => {
@@ -61,6 +69,13 @@ const statsSlice = createSlice({
 				state.loading = false;
 			}
 		);
+		builder.addCase(getUserStats.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(getUserStats.fulfilled, (state, { payload }) => {
+			state.users = payload;
+			state.loading = false;
+		});
 	},
 });
 

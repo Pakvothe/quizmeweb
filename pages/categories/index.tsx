@@ -5,7 +5,7 @@ import { IState } from '../../types/slices';
 import { getCategories } from '../../redux/slices/categories';
 import Link from 'next/link';
 import styled from 'styled-components';
-import strings from '../../pages/strings';
+import strings from '../strings';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Panel: React.FC = () => {
 
 	const { categories } = useSelector((state: IState) => state.categories);
 	useEffect(() => {
-		dispatch(getCategories());
+		dispatch(getCategories(language));
 	}, []);
 	return (
 		<>

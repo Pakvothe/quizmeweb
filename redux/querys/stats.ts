@@ -26,3 +26,12 @@ export const queryGetQuizzesByCategories = gql`
 		}
 	}
 `;
+
+export const queryGetUserStats = gql`
+	{
+		getUserStats {
+			validatedUsers
+			notValidatedUsers
+		}
+	}
+`;

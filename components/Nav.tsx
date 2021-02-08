@@ -42,7 +42,7 @@ const Nav = () => {
 						</Link>
 					</li>
 					<li>
-						<Link href='/users'>
+						<Link href='/validations'>
 							<a>{s.validations}</a>
 						</Link>
 					</li>

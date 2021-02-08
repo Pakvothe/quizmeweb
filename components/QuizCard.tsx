@@ -25,7 +25,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
 				</Link>
 				<p className='info__desc'>{quiz.description}</p>
 				<button
-					className='card__button'
+					className='card__button error'
 					onClick={() => {
 						dispatch(destroyQuiz(quiz._id));
 					}}

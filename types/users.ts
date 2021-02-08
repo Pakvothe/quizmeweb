@@ -3,6 +3,7 @@ export interface IUserState {
 	users: IUserFull[];
 	token: string;
 	loading: boolean;
+	validations: IValidation[];
 }
 
 export interface IUser {
@@ -38,4 +39,16 @@ export interface IUserLogin {
 export interface IPayloadActivate {
 	userId: string;
 	isActive: boolean;
+}
+
+export interface IValidation {
+	_id: string;
+	fullName: string;
+	description: string;
+	userId: IUser;
+}
+
+export interface IValidationPayload {
+	userId: string;
+	validationId: string;
 }

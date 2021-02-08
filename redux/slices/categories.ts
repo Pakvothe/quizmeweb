@@ -11,7 +11,7 @@ import {
 
 export const getCategories = createAsyncThunk(
 	'category/getAll',
-	async (lang) => {
+	async (lang: string) => {
 		const client = getClient();
 		const clientRequest = await client.request(getAllCategories);
 		return { clientRequest, lang };

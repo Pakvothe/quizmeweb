@@ -11,4 +11,8 @@ export interface IStatsState {
 	totalNewUsers: number;
 	quizzesByCategories: IStatsCategory[];
 	loading: boolean;
+	users: {
+		validatedUsers: number;
+		notValidatedUsers: number;
+	};
 }
