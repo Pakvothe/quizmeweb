@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slices/users';
 import { useRouter } from 'next/router';
 import { changeLanguage } from '../redux/slices/global';
-import strings from '../pages/strings';
+import strings from '@constants/strings';
 
 /* --- Types --- */
 import { IState } from '../types/slices';

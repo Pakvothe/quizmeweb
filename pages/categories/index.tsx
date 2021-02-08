@@ -5,7 +5,7 @@ import { IState } from '../../types/slices';
 import { getCategories } from '../../redux/slices/categories';
 import Link from 'next/link';
 import styled from 'styled-components';
-import strings from '../strings';
+import strings from '@constants/strings';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();

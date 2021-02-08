@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getValidations } from '@redux/slices/users';
 import { IState } from '../../types/slices';
 import ValidationCard from '@components/ValidationCard';
-import strings from '@pages/strings';
+import strings from '@constants/strings';
 interface indexProps {}
 
 const Validations: React.FC<indexProps> = ({}) => {

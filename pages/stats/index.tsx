@@ -8,7 +8,7 @@ import {
 } from '../../redux/slices/stats';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import StyledStatsContainer from '../../styles/StatsStyled';
-import strings from '../strings';
+import strings from '@constants/strings';
 import { IState } from '../../types/slices';
 
 const Panel: React.FC = () => {

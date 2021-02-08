@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import Link from 'next/link';
-import strings from '../pages/strings';
+import strings from '@constants/strings';
 import { useDispatch, useSelector } from 'react-redux';
 import { destroyQuiz } from '../redux/slices/quizzes';
 

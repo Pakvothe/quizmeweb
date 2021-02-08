@@ -2,7 +2,7 @@ import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { destroyCategory } from '../redux/slices/categories';
 import { useDispatch, useSelector } from 'react-redux';
-import strings from '../pages/strings';
+import strings from '@constants/strings';
 
 /* --- Types --- */
 import { CategoryCardProps } from '../types/categories';

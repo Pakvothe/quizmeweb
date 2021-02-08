@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getQuizzesBySearchInput } from '../redux/slices/quizzes';
 import { getCategoriesByInput } from '../redux/slices/categories';
 import { saveInput } from '../redux/slices/global';
-import strings from '../pages/strings';
+import strings from '@constants/strings';
 import { useSelector } from 'react-redux';
 
 /* --- Types --- */

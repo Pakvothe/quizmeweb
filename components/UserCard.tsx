@@ -2,7 +2,7 @@ import React from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { useDispatch, useSelector } from 'react-redux';
 import { activateUser } from '../redux/slices/users';
-import strings from '../pages/strings';
+import strings from '@constants/strings';
 
 /* --- Types --- */
 import { IUserFull } from '../types/users';

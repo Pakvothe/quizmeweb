@@ -9,7 +9,7 @@ import {
 	deleteValidation,
 } from '@redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
-import strings from '@pages/strings';
+import strings from '@constants/strings';
 
 interface ValidationCardProps {
 	validation: IValidation;

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../types/slices';
 import { getQuizzesBySearchInput } from '../redux/slices/quizzes';
 import { Button } from '../styles/styledGlobal';
-import strings from '@pages/strings';
+import strings from '@constants/strings';
 
 const CardsContainer: React.FC<CardsContainerProps> = ({
 	quizzes,

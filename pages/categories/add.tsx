@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createCategory } from '../../redux/slices/categories';
 import { Form, Button } from '../../styles/styledGlobal';
 import { IState } from '../../types/slices';
-import strings from '../strings';
+import strings from '@constants/strings';
 
 const AddCategory: React.FC = () => {
 	const dispatch = useDispatch();

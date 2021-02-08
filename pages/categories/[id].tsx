@@ -12,7 +12,7 @@ import { IState } from '../../types/slices';
 import { Form, Button } from '../../styles/styledGlobal';
 
 /* --- Utils --- */
-import strings from '../strings';
+import strings from '@constants/strings';
 
 const AddCategory: React.FC = () => {
 	const dispatch = useDispatch();
