@@ -6,6 +6,7 @@ import { getCategories } from '../../redux/slices/categories';
 import Link from 'next/link';
 import styled from 'styled-components';
 import strings from '@constants/strings';
+import Searchbar from '@components/Searchbar';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
@@ -19,17 +20,19 @@ const Panel: React.FC = () => {
 	return (
 		<>
 			<main className='container'>
-				<Link href='/categories/add'>
-					<div
-						style={{
-							width: '100%',
-							display: 'flex',
-							justifyContent: 'flex-end',
-						}}
-					>
+				<div
+					style={{
+						width: '100%',
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
+					<Searchbar width={'50%'} />
+					<Link href='/categories/add'>
 						<Button>{s.addCat}</Button>
-					</div>
-				</Link>
+					</Link>
+				</div>
 				<CardsContainer categories={categories} />
 			</main>
 		</>
@@ -45,7 +48,6 @@ const Button = styled.button`
 	padding: 0.5em 1em;
 	border-radius: 0.5em;
 	cursor: pointer;
-	margin: 0 2.6em 2em 1em;
 
 	&:hover {
 		box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);

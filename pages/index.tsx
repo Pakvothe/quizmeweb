@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { HomeStyled } from '../styles/homeStyled';
 import Image from 'next/image';
 import React, { useState } from 'react';

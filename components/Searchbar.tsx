@@ -12,9 +12,11 @@ import { useSelector } from 'react-redux';
 /* --- Types --- */
 import { IState } from '../types/slices';
 
-interface SearchbarProps {}
+interface SearchbarProps {
+	width?: string;
+}
 
-const Searchbar: React.FC<SearchbarProps> = ({}) => {
+const Searchbar: React.FC<SearchbarProps> = ({ width }) => {
 	const [input, setInput] = useState('');
 	const dispatch = useDispatch();
 	const { language } = useSelector((state: IState) => state.global);
@@ -37,8 +39,9 @@ const Searchbar: React.FC<SearchbarProps> = ({}) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} style={{ width: '60%' }}>
 			<StyledSearchbar
+				width={width}
 				type='text'
 				value={input}
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

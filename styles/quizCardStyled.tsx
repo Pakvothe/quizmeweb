@@ -30,7 +30,7 @@ const StyledQuizCard = styled.article`
 		flex: 1;
 
 		.info__title {
-			font-size: 1.2em;
+			font-size: 1.2em !important;
 			padding-bottom: 0.6em;
 			margin-bottom: 0.6em;
 			border-bottom: 1px solid #ddd;

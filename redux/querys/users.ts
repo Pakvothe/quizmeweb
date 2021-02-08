@@ -112,6 +112,12 @@ export const mutationValidateUser = gql`
 	}
 `;
 
+export const mutationPromoteUser = gql`
+	mutation($userId: ID!, $role: String!) {
+		promoteUser(userId: $userId, role: $role)
+	}
+`;
+
 export const mutationDeleteValidation = gql`
 	mutation($payload: ID!) {
 		deleteValidation(validationId: $payload)

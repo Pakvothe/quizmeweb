@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { useDispatch, useSelector } from 'react-redux';
-import { activateUser } from '../redux/slices/users';
+import { activateUser, promoteUser } from '../redux/slices/users';
 import strings from '@constants/strings';
 
 /* --- Types --- */
@@ -19,10 +19,26 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 	const { language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
 	const [isOpen, setIsOpen] = useState(false);
+	const [option, setOption] = useState('');
 	const onClose = () => setIsOpen(false);
 	const cancelRef = useRef(null);
 	const toast = useToast();
-	const action = () => {
+	const activate = () => {
+		toast({
+			title: `${s.userHas} ${user.isActive ? s.blocked : s.unblocked}`,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
+		dispatch(
+			promoteUser({
+				userId: user._id,
+				role: user.role === 'ADMIN' ? 'USER' : 'ADMIN',
+			})
+		);
+	};
+	const promote = () => {
 		toast({
 			title: `${s.userHas} ${user.isActive ? s.blocked : s.unblocked}`,
 			status: 'success',
@@ -49,20 +65,55 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 								: 'var(--clr-primary)',
 						}}
 						onClick={() => {
+							setOption('activate');
 							setIsOpen(true);
 						}}
 					>
 						{user.isActive ? s.BlockUserBtn : s.ActivateUserBtn}
 					</button>
+					<button
+						className='card__button'
+						style={{
+							marginTop: '1em',
+							backgroundColor:
+								user.role === 'ADMIN'
+									? 'var(--clr-error)'
+									: 'var(--clr-primary)',
+						}}
+						onClick={() => {
+							setOption('promote');
+							setIsOpen(true);
+						}}
+					>
+						{user.role === 'ADMIN'
+							? s.demoteUserBtn
+							: s.promoteAdminBtn}
+					</button>
 				</div>
 			</StyledQuizCard>
 			<DialogOverlay
 				onClose={onClose}
-				dispatch={action}
+				dispatch={option === 'promote' ? promote : activate}
 				isOpen={isOpen}
 				cancelRef={cancelRef}
-				confirmText={user.isActive ? s.BlockUserBtn : s.ActivateUserBtn}
-				color={user.isActive ? 'red' : 'green'}
+				confirmText={
+					option === 'promote'
+						? user.role === 'ADMIN'
+							? s.demoteUserBtn
+							: s.promoteAdminBtn
+						: user.isActive
+						? s.BlockUserBtn
+						: s.ActivateUserBtn
+				}
+				color={
+					option === 'promote'
+						? user.role === 'ADMIN'
+							? 'red'
+							: 'green'
+						: user.isActive
+						? 'red'
+						: 'green'
+				}
 			/>
 		</>
 	);

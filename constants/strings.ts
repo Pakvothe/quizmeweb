@@ -10,7 +10,7 @@ const strings = {
 		stats: 'Statistics',
 		category: 'Categories',
 		user: 'Users',
-		language: 'Language',
+		language: 'EN',
 		logout: 'Log out',
 		search: 'Search...',
 		searchBtn: 'Search',
@@ -35,6 +35,8 @@ const strings = {
 		categoryDeleted: 'The category was deleted',
 		categoryUpdated: 'Category updated',
 		categoryCreated: 'Category created',
+		promoteAdminBtn: 'Promote a Admin',
+		demoteUserBtn: 'Demote to User',
 	},
 
 	es: {
@@ -48,7 +50,7 @@ const strings = {
 		stats: 'Estadísticas',
 		category: 'Categorías',
 		user: 'Usuarios',
-		language: 'Idioma',
+		language: 'ES',
 		logout: 'Cerrar sesión',
 		search: 'Buscar...',
 		searchBtn: 'Buscar',
@@ -73,6 +75,8 @@ const strings = {
 		categoryDeleted: 'La categoría fue eliminada',
 		categoryUpdated: 'Categoría actualizada',
 		categoryCreated: 'Categoría creada',
+		promoteAdminBtn: 'Promover a Admin',
+		demoteUserBtn: 'Degradar a Usuario',
 	},
 };
 

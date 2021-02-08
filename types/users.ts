@@ -52,3 +52,8 @@ export interface IValidationPayload {
 	userId: string;
 	validationId: string;
 }
+
+export interface IPromotePayload {
+	userId: string;
+	role: string;
+}

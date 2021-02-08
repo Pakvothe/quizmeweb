@@ -1,3 +1,4 @@
+import Searchbar from '@components/Searchbar';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardsContainer from '../../components/CardsContainer';
@@ -17,6 +18,9 @@ const Panel: React.FC = () => {
 	return (
 		<>
 			<main className='container'>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<Searchbar />
+				</div>
 				<CardsContainer quizzes={quizzes} />
 			</main>
 		</>

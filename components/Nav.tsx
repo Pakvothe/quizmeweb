@@ -48,7 +48,6 @@ const Nav = () => {
 					</li>
 				</ul>
 				<div style={{ display: 'flex', alignItems: 'center' }}>
-					<Searchbar />
 					<ul className='side-nav'>
 						<li
 							onClick={() => {

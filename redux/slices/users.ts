@@ -3,6 +3,7 @@ import axios from 'axios';
 import { getClient } from '../../constants/api';
 import {
 	IPayloadActivate,
+	IPromotePayload,
 	IUserLogin,
 	IValidationPayload,
 } from '../../types/users';
@@ -13,6 +14,7 @@ import {
 	queryGetValidations,
 	mutationValidateUser,
 	mutationDeleteValidation,
+	mutationPromoteUser,
 } from '../querys/users';
 const URL_API = process.env.URL_API;
 
@@ -70,6 +72,17 @@ export const validateUser = createAsyncThunk(
 			...payload,
 		});
 		return clientRequest.validateUser;
+	}
+);
+
+export const promoteUser = createAsyncThunk(
+	'/user/promote',
+	async (payload: IPromotePayload) => {
+		const client = getClient();
+		const clientRequest = await client.request(mutationPromoteUser, {
+			...payload,
+		});
+		return clientRequest.promoteUser;
 	}
 );
 
