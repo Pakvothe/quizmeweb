@@ -23,6 +23,9 @@ const strings = {
 		validationReason: 'Reason to validate:',
 		validationAccept: 'Accept',
 		validationReject: 'Reject',
+		cancel: 'Cancel',
+		youSure: 'Are you sure?',
+		cantUndo: "You can't undo this action afterwards.",
 	},
 
 	es: {
@@ -49,6 +52,9 @@ const strings = {
 		validationReason: 'Razón de validación:',
 		validationAccept: 'Aceptar',
 		validationReject: 'Rechazar',
+		cancel: 'Cancelar',
+		youSure: 'Estás seguro?',
+		cantUndo: 'No puedes deshacer esta acción',
 	},
 };
 

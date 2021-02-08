@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { destroyCategory } from '../redux/slices/categories';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,42 +8,56 @@ import strings from '@constants/strings';
 import { CategoryCardProps } from '../types/categories';
 import { IState } from '../types/slices';
 import { useRouter } from 'next/router';
+import DialogOverlay from './DialogOverlay';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
+	const [isOpen, setIsOpen] = useState(false);
+	const onClose = () => setIsOpen(false);
+	const cancelRef = useRef(null);
+	const action = () => dispatch(destroyCategory(category._id as string));
+
 	return (
-		<StyledQuizCard>
-			<div className='card__info'>
-				<h1 className='info__title'>{category.description_es}</h1>
-				<h1 className='info__title'>{category.description_en}</h1>
-				<button
-					className='card__button error'
-					onClick={() =>
-						dispatch(destroyCategory(category._id as string))
-					}
-				>
-					{s.DeleteBtn}
-				</button>
-				<button
-					className='card__button warning'
-					onClick={() =>
-						router.push({
-							pathname: `/categories/${category._id}`,
-							query: {
-								description_en: category.description_en,
-								description_es: category.description_es,
-							},
-						})
-					}
-					style={{ marginTop: '1em' }}
-				>
-					{s.editBtn}
-				</button>
-			</div>
-		</StyledQuizCard>
+		<>
+			<StyledQuizCard>
+				<div className='card__info'>
+					<h1 className='info__title'>{category.description_es}</h1>
+					<h1 className='info__title'>{category.description_en}</h1>
+					<button
+						className='card__button error'
+						onClick={() => setIsOpen(true)}
+					>
+						{s.DeleteBtn}
+					</button>
+					<button
+						className='card__button warning'
+						onClick={() =>
+							router.push({
+								pathname: `/categories/${category._id}`,
+								query: {
+									description_en: category.description_en,
+									description_es: category.description_es,
+								},
+							})
+						}
+						style={{ marginTop: '1em' }}
+					>
+						{s.editBtn}
+					</button>
+				</div>
+			</StyledQuizCard>
+			<DialogOverlay
+				onClose={onClose}
+				dispatch={action}
+				isOpen={isOpen}
+				cancelRef={cancelRef}
+				confirmText={s.DeleteBtn}
+				color='red'
+			/>
+		</>
 	);
 };
 
