@@ -9,6 +9,7 @@ import { destroyQuiz } from '../redux/slices/quizzes';
 import { IState } from '../types/slices';
 import { QuizCardProps } from '../types/quizzes';
 import DialogOverlay from './DialogOverlay';
+import { useToast } from '@chakra-ui/toast';
 
 const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
 	const { language } = useSelector((state: IState) => state.global);
@@ -17,7 +18,17 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const onClose = () => setIsOpen(false);
 	const cancelRef = useRef(null);
-	const action = () => dispatch(destroyQuiz(quiz._id));
+	const toast = useToast();
+	const action = () => {
+		toast({
+			title: s.quizDeleted,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
+		dispatch(destroyQuiz(quiz._id));
+	};
 
 	return (
 		<>

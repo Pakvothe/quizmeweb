@@ -10,6 +10,7 @@ import { Doughnut, Bar } from 'react-chartjs-2';
 import StyledStatsContainer from '../../styles/StatsStyled';
 import strings from '@constants/strings';
 import { IState } from '../../types/slices';
+import { Spinner } from '@chakra-ui/spinner';
 
 const Panel: React.FC = () => {
 	const dispatch = useDispatch();
@@ -31,7 +32,12 @@ const Panel: React.FC = () => {
 	const { language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
 
-	if (loading) return <h1>Cargando...</h1>;
+	if (loading)
+		return (
+			<div style={{ textAlign: 'center', margin: '200px' }}>
+				<Spinner color='green' size='xl' />
+			</div>
+		);
 
 	const data = {
 		labels: quizzes.map((quiz) => quiz[`description_${language}`]),
@@ -53,10 +59,7 @@ const Panel: React.FC = () => {
 			{
 				label: 'Cantidad',
 				data: [users.validatedUsers, users.notValidatedUsers],
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-				],
+				backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
 				borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
 				borderWidth: 1,
 			},
@@ -81,9 +84,7 @@ const Panel: React.FC = () => {
 						<Doughnut data={data} width={100} height={100} />
 					</div>
 					<div className='chartContainer'>
-						<h2 className='chart-title'>
-							Cantidad de usuarios validados:
-						</h2>
+						<h2 className='chart-title'>Cantidad de usuarios validados:</h2>
 						<Bar
 							data={barData}
 							width={100}

@@ -5,12 +5,14 @@ import { createCategory } from '../../redux/slices/categories';
 import { Form, Button } from '../../styles/styledGlobal';
 import { IState } from '../../types/slices';
 import strings from '@constants/strings';
+import { useToast } from '@chakra-ui/toast';
 
 const AddCategory: React.FC = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
+	const toast = useToast();
 
 	const [input, setInput] = useState({
 		description_es: '',
@@ -20,6 +22,13 @@ const AddCategory: React.FC = () => {
 	const handleSubmit = async (ev: React.FormEvent) => {
 		ev.preventDefault();
 		await dispatch(createCategory(input));
+		toast({
+			title: s.categoryCreated,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
 		router.push('/categories');
 	};
 
