@@ -6,6 +6,7 @@ import Nav from '../components/Nav';
 import { useEffect } from 'react';
 import { setLanguage } from '../redux/slices/global';
 import Head from 'next/head';
+import { ChakraProvider } from '@chakra-ui/react';
 
 interface IProps {
 	Component: React.FC;
@@ -47,17 +48,19 @@ function MyApp({ Component, pageProps }: IProps) {
 
 	return (
 		<Provider store={store}>
-			<Head>
-				<title>Quizme App</title>
-				<link rel='icon' href='/assets/icon.png' />
-				<link
-					rel='stylesheet'
-					integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
-				/>
-			</Head>
-			{router.pathname === '/' || <Nav />}
+			<ChakraProvider>
+				<Head>
+					<title>Quizme App</title>
+					<link rel='icon' href='/assets/icon.png' />
+					<link
+						rel='stylesheet'
+						integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p'
+					/>
+				</Head>
+				{router.pathname === '/' || <Nav />}
 
-			<Component {...pageProps} />
+				<Component {...pageProps} />
+			</ChakraProvider>
 		</Provider>
 	);
 }
