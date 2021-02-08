@@ -17,6 +17,12 @@ const strings = {
 		addCat: 'Add Categories',
 		addBtn: 'Add',
 		validations: 'Validations',
+		loading: 'Loading...',
+		validationsTitle: 'User validations',
+		validationsNoValidations: 'There are currently no users to validate.',
+		validationReason: 'Reason to validate:',
+		validationAccept: 'Accept',
+		validationReject: 'Reject',
 	},
 
 	es: {
@@ -37,6 +43,12 @@ const strings = {
 		addCat: 'Agregar Categorías',
 		addBtn: 'Agregar',
 		validations: 'Validaciones',
+		loading: 'Cargando...',
+		validationsTitle: 'Validaciones de usuarios',
+		validationsNoValidations: 'No hay usuarios para validar actualmente.',
+		validationReason: 'Razón de validación:',
+		validationAccept: 'Aceptar',
+		validationReject: 'Rechazar',
 	},
 };
 

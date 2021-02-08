@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../types/slices';
 import { getQuizzesBySearchInput } from '../redux/slices/quizzes';
 import { Button } from '../styles/styledGlobal';
+import strings from '@pages/strings';
 
 const CardsContainer: React.FC<CardsContainerProps> = ({
 	quizzes,
@@ -17,7 +18,10 @@ const CardsContainer: React.FC<CardsContainerProps> = ({
 	users,
 }) => {
 	const { totalPages, page } = useSelector((state: IState) => state.quizzes);
-	const { savedInput } = useSelector((state: IState) => state.global);
+	const { savedInput, language } = useSelector(
+		(state: IState) => state.global
+	);
+	const s = strings[language];
 	const dispatch = useDispatch();
 
 	if (users) {
@@ -71,7 +75,7 @@ const CardsContainer: React.FC<CardsContainerProps> = ({
 			</>
 		);
 	}
-	return <h1>Cargando...</h1>;
+	return <h1>{s.loading}</h1>;
 };
 
 export default CardsContainer;

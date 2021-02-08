@@ -33,6 +33,22 @@ export const queryGetUsers = gql`
 	}
 	${EntireUserInfo}
 `;
+
+export const queryGetValidations = gql`
+	{
+		getValidations {
+			_id
+			description
+			userId {
+				_id
+				firstName
+				lastName
+				email
+			}
+		}
+	}
+`;
+
 /* --- Mutations --- */
 
 export const mutationActivateUser = gql`
@@ -91,10 +107,17 @@ export const queryGetUserQuizzes = gql`
 `;
 
 export const mutationValidateUser = gql`
-	mutation($payload: ID!) {
-		validateUser(userId: $payload)
+	mutation($userId: ID!, $validationId: ID!) {
+		validateUser(userId: $userId, validationId: $validationId)
 	}
 `;
+
+export const mutationDeleteValidation = gql`
+	mutation($payload: ID!) {
+		deleteValidation(validationId: $payload)
+	}
+`;
+
 export const mutationPremiumUser = gql`
 	mutation {
 		premiumUser

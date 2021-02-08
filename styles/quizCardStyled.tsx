@@ -38,6 +38,9 @@ const StyledQuizCard = styled.article`
 			cursor: pointer;
 			text-align: center;
 		}
+		.info__title + .info__title {
+			border: none;
+		}
 
 		.info__desc {
 			font-size: 0.9em;
@@ -67,6 +70,7 @@ const StyledQuizCard = styled.article`
 
 		&.warning {
 			background: var(--clr-warning);
+			color: var(--clr-dark);
 			&:hover {
 				background-color: var(--clr-warning-2);
 			}

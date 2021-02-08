@@ -17,8 +17,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 	return (
 		<StyledQuizCard>
 			<div className='card__info'>
-				<h1 className='info__title'>{category.description_en}</h1>
 				<h1 className='info__title'>{category.description_es}</h1>
+				<h1 className='info__title'>{category.description_en}</h1>
 				<button
 					className='card__button error'
 					onClick={() =>
