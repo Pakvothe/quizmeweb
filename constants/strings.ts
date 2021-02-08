@@ -26,6 +26,15 @@ const strings = {
 		cancel: 'Cancel',
 		youSure: 'Are you sure?',
 		cantUndo: "You can't undo this action afterwards.",
+		quizDeleted: 'The quiz was deleted',
+		userHas: 'The user has been',
+		blocked: 'blocked',
+		unblocked: 'unblocked',
+		validationDeclined: 'The validation request has been declined',
+		validationAccepted: 'The user has been validated',
+		categoryDeleted: 'The category was deleted',
+		categoryUpdated: 'Category updated',
+		categoryCreated: 'Category created',
 	},
 
 	es: {
@@ -55,6 +64,15 @@ const strings = {
 		cancel: 'Cancelar',
 		youSure: 'Estás seguro?',
 		cantUndo: 'No puedes deshacer esta acción',
+		quizDeleted: 'El quiz ha sido eliminado',
+		userHas: 'El usuario ha sido',
+		blocked: 'bloqueado',
+		unblocked: 'desbloqueado',
+		validationDeclined: 'El pedido de validación ha sido rechazado',
+		validationAccepted: 'El usuario ha sido validado',
+		categoryDeleted: 'La categoría fue eliminada',
+		categoryUpdated: 'Categoría actualizada',
+		categoryCreated: 'Categoría creada',
 	},
 };
 

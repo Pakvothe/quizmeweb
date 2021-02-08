@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IValidation } from '../types/users';
 import ValidationCardStyled from '@styles/validationStyled';
 import { IState } from '../types/slices';
@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import strings from '@constants/strings';
 import DialogOverlay from './DialogOverlay';
+import { useToast } from '@chakra-ui/toast';
 
 interface ValidationCardProps {
 	validation: IValidation;
@@ -25,10 +26,19 @@ const ValidationCard: React.FC<ValidationCardProps> = ({ validation }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const onClose = () => setIsOpen(false);
 	const cancelRef = useRef(null);
-	const notValidate = () => async () => {
+	const toast = useToast();
+	const notValidate = async () => {
 		await dispatch(deleteValidation(validation._id));
+		toast({
+			title: s.validationDeclined,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
 		await dispatch(getValidations());
 	};
+
 	const validate = async () => {
 		await dispatch(
 			validateUser({
@@ -36,6 +46,13 @@ const ValidationCard: React.FC<ValidationCardProps> = ({ validation }) => {
 				validationId: validation._id,
 			})
 		);
+		toast({
+			title: s.validationAccepted,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
 		await dispatch(getValidations());
 	};
 

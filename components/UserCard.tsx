@@ -8,6 +8,7 @@ import strings from '@constants/strings';
 import { IUserFull } from '../types/users';
 import { IState } from '../types/slices';
 import DialogOverlay from './DialogOverlay';
+import { useToast } from '@chakra-ui/toast';
 
 interface UserCardProps {
 	user: IUserFull;
@@ -20,8 +21,17 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const onClose = () => setIsOpen(false);
 	const cancelRef = useRef(null);
-	const action = () =>
+	const toast = useToast();
+	const action = () => {
+		toast({
+			title: `${s.userHas} ${user.isActive ? s.blocked : s.unblocked}`,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
 		dispatch(activateUser({ userId: user._id, isActive: !user.isActive }));
+	};
 
 	return (
 		<>

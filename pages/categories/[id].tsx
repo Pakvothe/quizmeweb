@@ -14,6 +14,7 @@ import { Form, Button } from '../../styles/styledGlobal';
 
 /* --- Utils --- */
 import strings from '@constants/strings';
+import { useToast } from '@chakra-ui/toast';
 
 const AddCategory: React.FC = () => {
 	const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const AddCategory: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const onClose = () => setIsOpen(false);
 	const cancelRef = useRef(null);
+	const toast = useToast();
 
 	const [input, setInput] = useState({
 		description_es: router.query.description_es as string,
@@ -32,6 +34,13 @@ const AddCategory: React.FC = () => {
 	const handleSubmit = async () => {
 		const { id: catId } = router.query;
 		await dispatch(updateCategory({ category: input, catId: catId as string }));
+		toast({
+			title: s.categoryUpdated,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
 		router.push('/categories');
 	};
 

@@ -4,6 +4,7 @@ import { getValidations } from '@redux/slices/users';
 import { IState } from '../../types/slices';
 import ValidationCard from '@components/ValidationCard';
 import strings from '@constants/strings';
+import { Spinner } from '@chakra-ui/spinner';
 interface indexProps {}
 
 const Validations: React.FC<indexProps> = ({}) => {
@@ -11,9 +12,7 @@ const Validations: React.FC<indexProps> = ({}) => {
 	const { language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
 
-	const { validations, loading } = useSelector(
-		(state: IState) => state.users
-	);
+	const { validations, loading } = useSelector((state: IState) => state.users);
 
 	useEffect(() => {
 		dispatch(getValidations());
@@ -21,9 +20,9 @@ const Validations: React.FC<indexProps> = ({}) => {
 
 	if (loading)
 		return (
-			<main className='container'>
-				<h1>{s.loading}</h1>
-			</main>
+			<div style={{ textAlign: 'center', margin: '200px' }}>
+				<Spinner color='green' size='xl' />
+			</div>
 		);
 
 	return (
@@ -39,10 +38,7 @@ const Validations: React.FC<indexProps> = ({}) => {
 					}}
 				>
 					{validations.map((validation) => (
-						<ValidationCard
-							key={validation._id}
-							validation={validation}
-						/>
+						<ValidationCard key={validation._id} validation={validation} />
 					))}
 				</div>
 			) : (

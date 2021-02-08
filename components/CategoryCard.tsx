@@ -9,6 +9,7 @@ import { CategoryCardProps } from '../types/categories';
 import { IState } from '../types/slices';
 import { useRouter } from 'next/router';
 import DialogOverlay from './DialogOverlay';
+import { useToast } from '@chakra-ui/toast';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 	const dispatch = useDispatch();
@@ -18,7 +19,17 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const onClose = () => setIsOpen(false);
 	const cancelRef = useRef(null);
-	const action = () => dispatch(destroyCategory(category._id as string));
+	const toast = useToast();
+	const action = () => {
+		toast({
+			title: s.categoryDeleted,
+			status: 'success',
+			duration: 2000,
+			isClosable: true,
+			position: 'bottom-left',
+		});
+		dispatch(destroyCategory(category._id as string));
+	};
 
 	return (
 		<>

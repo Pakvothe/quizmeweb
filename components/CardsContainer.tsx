@@ -3,6 +3,7 @@ import QuizCard from '../components/QuizCard';
 import StyledCardsContainer from '../styles/cardsContainerStyled';
 import CategoryCard from './CategoryCard';
 import UserCard from './UserCard';
+import { Spinner } from '@chakra-ui/react';
 
 /* --- Types --- */
 import { CardsContainerProps } from '../types/categories';
@@ -17,12 +18,23 @@ const CardsContainer: React.FC<CardsContainerProps> = ({
 	categories,
 	users,
 }) => {
-	const { totalPages, page } = useSelector((state: IState) => state.quizzes);
-	const { savedInput, language } = useSelector(
-		(state: IState) => state.global
+	const { totalPages, page, loading: loadingQuizzes } = useSelector(
+		(state: IState) => state.quizzes
 	);
+	const { loading: loadingCategories } = useSelector(
+		(state: IState) => state.categories
+	);
+	const { loading: loadingUsers } = useSelector((state: IState) => state.users);
+	const { savedInput, language } = useSelector((state: IState) => state.global);
 	const s = strings[language];
 	const dispatch = useDispatch();
+
+	if (loadingCategories || loadingQuizzes || loadingUsers)
+		return (
+			<div style={{ textAlign: 'center', margin: '200px' }}>
+				<Spinner color='green' size='xl' />
+			</div>
+		);
 
 	if (users) {
 		return (
