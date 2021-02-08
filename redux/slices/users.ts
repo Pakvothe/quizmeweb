@@ -14,12 +14,12 @@ import {
 	mutationValidateUser,
 	mutationDeleteValidation,
 } from '../querys/users';
-const VERCEL_URL = process.env.VERCEL_URL;
+const URL_API = process.env.URL_API;
 
 export const userLogin = createAsyncThunk(
 	'user/login',
 	async (payload: IUserLogin) => {
-		const response = await axios.post(`${VERCEL_URL}/auth/login`, payload);
+		const response = await axios.post(`${URL_API}/auth/login`, payload);
 		return response.data;
 	}
 );
