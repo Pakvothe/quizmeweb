@@ -1,9 +1,9 @@
 import { GraphQLClient } from 'graphql-request';
-const REACT_APP_API = process.env.URL_API;
+const VERCEL_URL = process.env.VERCEL_URL;
 
 export function getClient(authToken: string | null | undefined = null) {
 	if (!authToken) authToken = localStorage.getItem('token');
-	const client = new GraphQLClient(`${REACT_APP_API}/graphql`, {
+	const client = new GraphQLClient(`${VERCEL_URL}/graphql`, {
 		headers: {
 			Authorization: `Bearer ${authToken}`,
 		},
