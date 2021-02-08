@@ -15,6 +15,7 @@ const Nav = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { language } = useSelector((state: IState) => state.global);
+	const { validations } = useSelector((state: IState) => state.users);
 	const s = strings[language];
 
 	return (
@@ -45,6 +46,24 @@ const Nav = () => {
 						<Link href='/validations'>
 							<a>{s.validations}</a>
 						</Link>
+						<div
+							style={{
+								marginLeft: '.5em',
+								display: `${
+									validations.length === 0
+										? 'none'
+										: 'inline-block'
+								}`,
+								backgroundColor: 'var(--clr-error)',
+								borderRadius: '100%',
+								width: '1.8em',
+								textAlign: 'center',
+								padding: '.1em',
+								fontSize: '.9em',
+							}}
+						>
+							<span>{validations.length}</span>
+						</div>
 					</li>
 				</ul>
 				<div style={{ display: 'flex', alignItems: 'center' }}>

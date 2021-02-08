@@ -1,4 +1,5 @@
 import Searchbar from '@components/Searchbar';
+import { getValidations } from '@redux/slices/users';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardsContainer from '../../components/CardsContainer';
@@ -13,6 +14,7 @@ const Panel: React.FC = () => {
 		dispatch(
 			getQuizzesBySearchInput({ input: '', categoryFilter: '', page: 1 })
 		);
+		dispatch(getValidations());
 	}, []);
 
 	return (
