@@ -44,11 +44,12 @@ export const getQuizzesBySearchInput = createAsyncThunk(
 	'quiz/getQuizzesBySearchInput',
 	async (payload: IQuizzesInputPayload) => {
 		const client = getClient();
-		const clientRequest = await client.request(queryGetQuizzesBySearchInput, {
-			input: payload.input,
-			categoryFilter: payload.categoryFilter,
-			page: payload.page,
-		});
+		const clientRequest = await client.request(
+			queryGetQuizzesBySearchInput,
+			{
+				...payload,
+			}
+		);
 		return clientRequest.getQuizzesByInputSearch;
 	}
 );
@@ -81,11 +82,14 @@ const quizzesSlice = createSlice({
 		builder.addCase(getQuizzesBySearchInput.pending, (state) => {
 			state.loading = true;
 		});
-		builder.addCase(getQuizzesBySearchInput.fulfilled, (state, { payload }) => {
-			state.quizzes = payload.quizzes;
-			state.totalPages = payload.totalPages;
-			state.loading = false;
-		});
+		builder.addCase(
+			getQuizzesBySearchInput.fulfilled,
+			(state, { payload }) => {
+				state.quizzes = payload.quizzes;
+				state.totalPages = payload.totalPages;
+				state.loading = false;
+			}
+		);
 		builder.addCase(destroyQuiz.pending, (state) => {
 			state.loading = true;
 		});

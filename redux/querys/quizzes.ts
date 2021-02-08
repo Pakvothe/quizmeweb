@@ -38,15 +38,27 @@ export const EntireQuizInfo = gql`
 	}
 `;
 
+export const EntireQuizCardInfo = gql`
+	fragment EntireQuizCardInfo on QuizCard {
+		_id
+		title
+		description
+		image
+		likes
+		language
+		categoryId
+	}
+`;
+
 /* --- Querys --- */
 
 export const queryAllQuizzes = gql`
 	{
 		getQuizzes {
-			...EntireQuizInfo
+			...EntireQuizCardInfo
 		}
 	}
-	${EntireQuizInfo}
+	${EntireQuizCardInfo}
 `;
 
 export const queryGetQuiz = gql`
@@ -61,23 +73,27 @@ export const queryGetQuiz = gql`
 export const queryGetQuizByCategory = gql`
 	query($payload: ID!) {
 		getQuizByCategory(catId: $payload) {
-			...EntireQuizInfo
+			...EntireQuizCardInfo
 		}
 	}
-	${EntireQuizInfo}
+	${EntireQuizCardInfo}
 `;
 
 export const queryGetQuizzesBySearchInput = gql`
 	query($input: String!, $categoryFilter: String, $page: Int) {
-		getQuizzesByInputSearch(input: $input, cat: $categoryFilter, page: $page) {
+		getQuizzesByInputSearch(
+			input: $input
+			cat: $categoryFilter
+			page: $page
+		) {
 			quizzes {
-				...EntireQuizInfo
+				...EntireQuizCardInfo
 			}
 			hasNextPage
 			totalPages
 		}
 	}
-	${EntireQuizInfo}
+	${EntireQuizCardInfo}
 `;
 
 /*Get quizzes by popularity*/
@@ -85,10 +101,10 @@ export const queryGetQuizzesBySearchInput = gql`
 export const queryGtQuizzesByPopularity = gql`
 	{
 		searchByPopularity {
-			...EntireQuizInfo
+			...EntireQuizCardInfo
 		}
 	}
-	${EntireQuizInfo}
+	${EntireQuizCardInfo}
 `;
 
 /*Get quizzes suggested*/
@@ -96,10 +112,10 @@ export const queryGtQuizzesByPopularity = gql`
 export const queryGtQuizzesSuggested = gql`
 	{
 		getSuggestedQuizzes {
-			...EntireQuizInfo
+			...EntireQuizCardInfo
 		}
 	}
-	${EntireQuizInfo}
+	${EntireQuizCardInfo}
 `;
 
 /* --- Mutations --- */
@@ -127,8 +143,8 @@ export const updateLikeRequest = gql`
 export const quizCreateOne = gql`
 	mutation createQuiz($payload: QuizInput) {
 		createQuiz(quiz: $payload) {
-			...EntireQuizInfo
+			...EntireQuizCardInfo
 		}
 	}
-	${EntireQuizInfo}
+	${EntireQuizCardInfo}
 `;
