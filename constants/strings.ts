@@ -37,6 +37,8 @@ const strings = {
 		categoryCreated: 'Category created',
 		promoteAdminBtn: 'Promote a Admin',
 		demoteUserBtn: 'Demote to User',
+		demote: 'demote',
+		promote: 'promote',
 	},
 
 	es: {
@@ -77,6 +79,8 @@ const strings = {
 		categoryCreated: 'Categoría creada',
 		promoteAdminBtn: 'Promover a Admin',
 		demoteUserBtn: 'Degradar a Usuario',
+		demote: 'degradado',
+		promote: 'promovido',
 	},
 };
 

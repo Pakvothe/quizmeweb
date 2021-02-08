@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import StyledQuizCard from '../styles/quizCardStyled';
 import { useDispatch, useSelector } from 'react-redux';
-import { activateUser, promoteUser } from '../redux/slices/users';
+import { activateUser, getUsers, promoteUser } from '../redux/slices/users';
 import strings from '@constants/strings';
 
 /* --- Types --- */
@@ -31,22 +31,25 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 			isClosable: true,
 			position: 'bottom-left',
 		});
-		dispatch(
-			promoteUser({
-				userId: user._id,
-				role: user.role === 'ADMIN' ? 'USER' : 'ADMIN',
-			})
-		);
+		dispatch(activateUser({ userId: user._id, isActive: !user.isActive }));
 	};
-	const promote = () => {
+	const promote = async () => {
 		toast({
-			title: `${s.userHas} ${user.isActive ? s.blocked : s.unblocked}`,
+			title: `${s.userHas} ${
+				user.role === 'ADMIN' ? s.demote : s.promote
+			}`,
 			status: 'success',
 			duration: 2000,
 			isClosable: true,
 			position: 'bottom-left',
 		});
-		dispatch(activateUser({ userId: user._id, isActive: !user.isActive }));
+		await dispatch(
+			promoteUser({
+				userId: user._id,
+				role: user.role === 'ADMIN' ? 'USER' : 'ADMIN',
+			})
+		);
+		dispatch(getUsers());
 	};
 
 	return (
