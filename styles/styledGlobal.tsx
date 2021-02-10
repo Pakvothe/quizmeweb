@@ -38,3 +38,39 @@ export const Button = styled.button`
 		outline: none;
 	}
 `;
+
+export const Badge = styled.span`
+	display: inline-block;
+	min-width: 175px;
+	margin-top: 1em;
+	padding: 0.7em 1.2em;
+	font-size: 0.75em;
+	font-weight: 900;
+	text-align: center;
+	color: var(--clr-white);
+	border-radius: 10em;
+
+	&.warning {
+		background-color: var(--clr-warning);
+	}
+
+	&.error {
+		background-color: var(--clr-error);
+	}
+
+	&.success {
+		background-color: var(--clr-success);
+	}
+
+	&.secondary {
+		background-color: var(--clr-secondary);
+	}
+
+	&.dark {
+		background-color: var(--clr-dark);
+	}
+
+	&.small {
+		width: 50px;
+	}
+`;

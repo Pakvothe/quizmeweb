@@ -35,10 +35,14 @@ const strings = {
 		categoryDeleted: 'The category was deleted',
 		categoryUpdated: 'Category updated',
 		categoryCreated: 'Category created',
-		promoteAdminBtn: 'Promote a Admin',
+		promoteAdminBtn: 'Promote to Admin',
 		demoteUserBtn: 'Demote to User',
 		demote: 'demote',
 		promote: 'promote',
+		errorRole: 'Invalid credentials. Try again',
+		errorRequiredEmail: 'Email is required',
+		errorRequiredPassword: 'Password is required',
+		errorInvalidMail: 'Invalid email',
 	},
 
 	es: {
@@ -81,6 +85,10 @@ const strings = {
 		demoteUserBtn: 'Degradar a Usuario',
 		demote: 'degradado',
 		promote: 'promovido',
+		errorRole: 'Credenciales invalidas. Intentalo nuevamente',
+		errorRequiredEmail: 'El email es requerido',
+		errorRequiredPassword: 'La contraseña es requerida',
+		errorInvalidMail: 'E-mail invalido',
 	},
 };
 
