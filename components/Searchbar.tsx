@@ -14,9 +14,10 @@ import { IState } from '../types/slices';
 
 interface SearchbarProps {
 	width?: string;
+	categoryFilter?: string;
 }
 
-const Searchbar: React.FC<SearchbarProps> = ({ width }) => {
+const Searchbar: React.FC<SearchbarProps> = ({ width, categoryFilter }) => {
 	const [input, setInput] = useState('');
 	const dispatch = useDispatch();
 	const { language } = useSelector((state: IState) => state.global);
@@ -27,7 +28,11 @@ const Searchbar: React.FC<SearchbarProps> = ({ width }) => {
 		dispatch(saveInput(input));
 		if (router.pathname.includes('quizzes')) {
 			return dispatch(
-				getQuizzesBySearchInput({ input, categoryFilter: '', page: 1 })
+				getQuizzesBySearchInput({
+					input,
+					categoryFilter: categoryFilter || '',
+					page: 1,
+				})
 			);
 		}
 		if (router.pathname.includes('users')) {
