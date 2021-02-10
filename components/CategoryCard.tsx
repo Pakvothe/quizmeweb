@@ -3,6 +3,7 @@ import StyledQuizCard from '../styles/quizCardStyled';
 import { destroyCategory } from '../redux/slices/categories';
 import { useDispatch, useSelector } from 'react-redux';
 import strings from '@constants/strings';
+import Link from 'next/link';
 
 /* --- Types --- */
 import { CategoryCardProps } from '../types/categories';
@@ -35,8 +36,12 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
 		<>
 			<StyledQuizCard>
 				<div className='card__info'>
-					<h1 className='info__title'>{category.description_es}</h1>
-					<h1 className='info__title'>{category.description_en}</h1>
+					<Link href={`/quizzes/?category=${category._id}`}>
+						<h1 className='info__title'>{category.description_es}</h1>
+					</Link>
+					<Link href={`/quizzes/?category=${category._id}`}>
+						<h1 className='info__title'>{category.description_en}</h1>
+					</Link>
 					<button
 						className='card__button error'
 						onClick={() => setIsOpen(true)}
