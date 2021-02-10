@@ -21,7 +21,7 @@ const Panel: React.FC = () => {
 		dispatch(
 			getQuizzesBySearchInput({
 				input: '',
-				categoryFilter: categoryFilter || '',
+				categoryFilter: (router.query.category as string) || '',
 				page: 1,
 			})
 		);
