@@ -14,10 +14,11 @@ Estas tecnologías fueron usadas para crear el proyecto:
 - TypeScript
 
 ## 💬 ¿Cual es tu informacion de contacto?
-Puedes contactarme via e-mail: nc.devw@gmail.com\
-O puedes enviarme un mensaje por linkedin: https://www.linkedin.com/in/ignacio-contreras/
+Puedes contactarme via e-mail: ortiz.franco@yandex.com\
+O puedes enviarme un mensaje por linkedin: https://www.linkedin.com/in/franco-david-ortiz/
 
 También puedes encontrar a los otros miembros del proyecto aquí:
+- <a href="https://github.com/nc-devw/">Ignacio Contreras</a>
 - <a href="https://github.com/franfiori29/">Franco Fiori</a>
 - <a href="https://github.com/Pakvothe">Franco Ortiz</a>
 - <a href="https://github.com/Aglowkeys/">Emiliano Alfonso</a>
